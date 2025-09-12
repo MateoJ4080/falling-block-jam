@@ -54,6 +54,7 @@ public class Tetromino : MonoBehaviour
 
     public void Rotate(int angle)
     {
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxRotate, AudioManager.Instance.sfxVolume);
         transform.Rotate(0, 0, angle);
     }
 

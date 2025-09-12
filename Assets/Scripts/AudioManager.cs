@@ -1,0 +1,37 @@
+using UnityEngine;
+
+public class AudioManager : MonoBehaviour
+{
+    public static AudioManager Instance { get; set; }
+
+    [Header("Audio Sources")]
+    [SerializeField] private AudioSource musicSource;
+    [SerializeField] private AudioSource sfxSource;
+
+    [Header("Sound Effects")]
+    public AudioClip sfxRotate;
+    public AudioClip sfxLineClear;
+
+    [Header("Volume")]
+
+    public float sfxVolume;
+    public float musicVolume;
+
+    private void Awake()
+    {
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
+    }
+
+    public void PlayMusic(AudioClip clip, float volume = 1f)
+    {
+        musicSource.clip = clip;
+        musicSource.volume = volume;
+        musicSource.Play();
+    }
+
+    public void PlaySFX(AudioClip clip, float volume = 1f)
+    {
+        sfxSource.PlayOneShot(clip, volume);
+    }
+}

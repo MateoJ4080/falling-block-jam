@@ -39,8 +39,9 @@ public class GameManager : MonoBehaviour
         switch (prefab.name)
         {
             case "I_Tetromino":
-                offsetY = TileSize / 2f;
-                offsetX = 0f;
+            case "O_Tetromino":
+                offsetY = TileSize;
+                offsetX = 0;
                 break;
 
             case "T_Tetromino":
@@ -49,12 +50,7 @@ public class GameManager : MonoBehaviour
             case "J_Tetromino":
             case "L_Tetromino":
                 offsetY = TileSize;
-                offsetX = TileSize * 0.5f;
-                break;
-
-            case "O_Tetromino":
-                offsetY = TileSize;
-                offsetX = 0;
+                offsetX = TileSize;
                 break;
 
             default:

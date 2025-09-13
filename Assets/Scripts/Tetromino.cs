@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Jobs;
 public class Tetromino : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class Tetromino : MonoBehaviour
         tetrominoTransform = gameObject.transform;
         controls = new PlayerControls();
 
+        controls.Piece.Move.performed += ctx => Move(ctx);
         controls.Piece.RotateRight.performed += ctx => Rotate(-90);
         controls.Piece.RotateLeft.performed += ctx => Rotate(90);
     }
@@ -50,6 +52,20 @@ public class Tetromino : MonoBehaviour
             // GameManager.Instance.UpdateGridState();
         }
         else LockAndSpawnNew();
+    }
+
+    public void Move(InputAction.CallbackContext callbackContext)
+    {
+        Vector2 input = callbackContext.ReadValue<Vector2>();
+        Vector2 move = Vector2.zero;
+
+        // Avoid moving in two directions at the same time
+        if (Mathf.Abs(input.x) > 0)
+            move = new Vector2(Mathf.Sign(input.x), 0);
+        else if (input.y < 0)
+            move = new Vector2(0, -1);
+
+        transform.position += (Vector3)(move * GameManager.Instance.TileSize);
     }
 
     public void Rotate(int angle)

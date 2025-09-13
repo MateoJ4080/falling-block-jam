@@ -222,7 +222,7 @@ GameObject:
   - component: {fileID: 1047810289}
   - component: {fileID: 1047810288}
   m_Layer: 0
-  m_Name: dd1n6gs-bf7c041b-8759-4ec6-b706-ba97befe25b4_0
+  m_Name: Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

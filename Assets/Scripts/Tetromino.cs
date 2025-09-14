@@ -1,13 +1,11 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Jobs;
 public class Tetromino : MonoBehaviour
 {
     private PlayerControls controls;
     private float lastUpdateTime;
     private Transform tetrominoTransform;
-
+    private bool _isLocked;
 
     private void Awake()
     {
@@ -38,6 +36,7 @@ public class Tetromino : MonoBehaviour
     {
         if (Time.time >= lastUpdateTime + GameManager.Instance.FallSpeed)
         {
+            if (_isLocked) return;
             Fall();
 
             lastUpdateTime = Time.time;
@@ -49,13 +48,14 @@ public class Tetromino : MonoBehaviour
         if (Time.time >= lastUpdateTime + GameManager.Instance.FallSpeed && CanFall())
         {
             transform.position += Vector3.down * GameManager.Instance.TileSize;
-            // GameManager.Instance.UpdateGridState();
         }
         else LockAndSpawnNew();
     }
 
     public void Move(InputAction.CallbackContext callbackContext)
     {
+        if (_isLocked) return;
+
         Vector2 input = callbackContext.ReadValue<Vector2>();
         Vector2 move = Vector2.zero;
 
@@ -70,6 +70,8 @@ public class Tetromino : MonoBehaviour
 
     public void Rotate(int angle)
     {
+        if (_isLocked) return;
+
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxRotate, AudioManager.Instance.sfxVolume);
         transform.Rotate(0, 0, angle);
     }
@@ -78,9 +80,8 @@ public class Tetromino : MonoBehaviour
     {
         foreach (Transform block in tetrominoTransform)
         {
-            Vector2Int blockPos = new(Mathf.RoundToInt(block.position.x), Mathf.RoundToInt(block.position.y));
-
-            if (GameManager.Instance.IsValidPositionToFall(blockPos.x, blockPos.y - 1)) return false;
+            // Check if it's at the grid bottom or square below is occupied
+            if (!GameManager.Instance.IsValidPositionToFall((Vector2)block.transform.position - Vector2.up * GameManager.Instance.TileSize)) return false;
         }
 
         return true;
@@ -88,13 +89,13 @@ public class Tetromino : MonoBehaviour
 
     private void LockAndSpawnNew()
     {
+        _isLocked = true;
+
         foreach (Transform block in tetrominoTransform)
         {
-            Vector2 blockPos = block.transform.position;
-            GameManager.Instance.AddBlock(block, (int)blockPos.x, (int)blockPos.y);
+            GameManager.Instance.UpdateGridState(block.transform.position, block);
         }
 
-        GameManager.Instance.ActiveTetromino = null;
         GameManager.Instance.SpawnTetromino();
     }
 }

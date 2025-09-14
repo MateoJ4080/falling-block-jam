@@ -1,16 +1,21 @@
+using System.Collections.Generic;
+using Unity.Android.Gradle;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    [SerializeField] TetrominoSpawner spawner;
+    //Grid
+    private Dictionary<Vector2, Transform> gridState = new();
     [SerializeField] SpriteRenderer gridSr;
+    public Vector2 GridBottomLeft { get; set; }
 
+    [SerializeField] TetrominoSpawner spawner;
     [SerializeField] private float fallSpeed = 1f;
     public float FallSpeed => fallSpeed;
 
-    private Transform[,] gridState = new Transform[10, 20];
     public float TileSize { get; private set; }
 
 
@@ -24,6 +29,9 @@ public class GameManager : MonoBehaviour
         float tileWidth = gridSr.size.x / 10f;
         float tileHeight = gridSr.size.y / 20f;
         TileSize = Mathf.Min(tileWidth, tileHeight);
+
+        GridBottomLeft = (Vector2)gridSr.transform.position - new Vector2(gridSr.size.x / 2f, gridSr.size.y / 2f);
+        Debug.Log($"GridBottomLeft: {GridBottomLeft}");
     }
 
     public void SpawnTetromino()
@@ -63,16 +71,20 @@ public class GameManager : MonoBehaviour
         return gridSr.transform.position + (Vector3.up * (gridSr.size.y / 2f)) - (Vector3.right * offsetX) - (Vector3.up * offsetY);
     }
 
-    public void AddBlock(Transform block, int x, int y) => gridState[x, y] = block;
-
-    public bool IsValidPositionToFall(int x, int y)
+    public void UpdateGridState(Vector2 position, Transform block)
     {
-        if (x < 0 || x >= 10 || y < 0 || y >= 20)
+        gridState[position] = block;
+    }
+
+
+    public bool IsValidPositionToFall(Vector2 fallPos)
+    {
+        if (fallPos.y <= GridBottomLeft.y + TileSize / 2)
         {
-            Debug.LogWarning($"IsOccupied: index out of bounds for x={x}, y={y}");
+            Debug.LogWarning($"IsValidPositionToFall: index out of bounds for y: {fallPos.y}. Returning false");
             return false;
         }
-        Debug.Log("Position below occupied. Locking.");
-        return gridState[x, y] != null;
+
+        return true;
     }
 }

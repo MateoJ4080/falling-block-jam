@@ -4,12 +4,10 @@ public class Tetromino : MonoBehaviour
 {
     private PlayerControls controls;
     private float lastUpdateTime;
-    private Transform tetrominoTransform;
     private bool _isLocked;
 
     private void Awake()
     {
-        tetrominoTransform = gameObject.transform;
         controls = new PlayerControls();
 
         controls.Piece.Move.performed += ctx => Move(ctx);
@@ -34,22 +32,25 @@ public class Tetromino : MonoBehaviour
 
     private void Update()
     {
-        if (Time.time >= lastUpdateTime + GameManager.Instance.FallSpeed)
-        {
-            if (_isLocked) return;
-            Fall();
-
-            lastUpdateTime = Time.time;
-        }
+        Fall();
     }
 
     public void Fall()
     {
-        if (Time.time >= lastUpdateTime + GameManager.Instance.FallSpeed && CanFall())
+        if (_isLocked) return;
+
+        if (Time.time >= lastUpdateTime + GameManager.Instance.FallSpeed)
         {
-            transform.position += Vector3.down * GameManager.Instance.TileSize;
+            if (CanFall())
+            {
+                transform.position += Vector3.down * GameManager.Instance.TileSize;
+                lastUpdateTime = Time.time;
+            }
+            else
+            {
+                LockAndSpawnNew();
+            }
         }
-        else LockAndSpawnNew();
     }
 
     public void Move(InputAction.CallbackContext callbackContext)
@@ -57,15 +58,15 @@ public class Tetromino : MonoBehaviour
         if (_isLocked) return;
 
         Vector2 input = callbackContext.ReadValue<Vector2>();
-        Vector2 move = Vector2.zero;
+        Vector2 direction = Vector2.zero;
 
         // Avoid moving in two directions at the same time
         if (Mathf.Abs(input.x) > 0)
-            move = new Vector2(Mathf.Sign(input.x), 0);
+            direction = new Vector2(Mathf.Sign(input.x), 0);
         else if (input.y < 0)
-            move = new Vector2(0, -1);
+            direction = new Vector2(0, -1);
 
-        transform.position += (Vector3)(move * GameManager.Instance.TileSize);
+        if (CanMoveTo(direction)) transform.position += (Vector3)(direction * GameManager.Instance.TileSize);
     }
 
     public void Rotate(int angle)
@@ -78,24 +79,42 @@ public class Tetromino : MonoBehaviour
 
     private bool CanFall()
     {
-        foreach (Transform block in tetrominoTransform)
+        foreach (Transform block in transform)
         {
             // Check if it's at the grid bottom or square below is occupied
-            if (!GameManager.Instance.IsValidPositionToFall((Vector2)block.transform.position - Vector2.up * GameManager.Instance.TileSize)) return false;
-        }
+            Vector2 worldPos = (Vector2)block.position - new Vector2(0, GameManager.Instance.TileSize);
+            Vector2Int gridPos = GameManager.Instance.WorldToGrid(worldPos);
 
+            if (!GameManager.Instance.IsValidPosition(gridPos)) return false;
+        }
         return true;
     }
+
+    private bool CanMoveTo(Vector3 direction)
+    {
+        foreach (Transform block in transform)
+        {
+            // Check if square of the grid at "direction" is occupied
+            Vector2 worldPos = (Vector2)block.position + (Vector2)(direction * GameManager.Instance.TileSize);
+            Vector2Int gridPos = GameManager.Instance.WorldToGrid(worldPos);
+
+            if (!GameManager.Instance.IsValidPosition(gridPos)) return false;
+        }
+        return true;
+    }
+
 
     private void LockAndSpawnNew()
     {
         _isLocked = true;
 
-        foreach (Transform block in tetrominoTransform)
+        foreach (Transform block in transform)
         {
-            GameManager.Instance.UpdateGridState(block.transform.position, block);
+            Vector2Int gridPos = GameManager.Instance.WorldToGrid(block.transform.position);
+            Debug.Log($"Dictionary updated: {gridPos}, {block}");
+            GameManager.Instance.UpdateGridState(gridPos, block);
         }
 
-        GameManager.Instance.SpawnTetromino();
+        GameManager.Instance.SpawnNewTetromino();
     }
 }

@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     //Grid
-    private Dictionary<Vector2, Transform> gridState = new();
+    private Dictionary<Vector2Int, Transform> _gridState = new();
     [SerializeField] SpriteRenderer gridSr;
     public Vector2 GridBottomLeft { get; set; }
 
@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
         Debug.Log($"GridBottomLeft: {GridBottomLeft}");
     }
 
-    public void SpawnTetromino()
+    public void SpawnNewTetromino()
     {
         spawner.SpawnRandom();
     }
@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
                 break;
 
             default:
-                Debug.LogWarning("Spawning with default pffset");
+                Debug.LogWarning("Spawning with default offset");
                 offsetY = TileSize;
                 offsetX = 0f;
                 break;
@@ -71,20 +71,38 @@ public class GameManager : MonoBehaviour
         return gridSr.transform.position + (Vector3.up * (gridSr.size.y / 2f)) - (Vector3.right * offsetX) - (Vector3.up * offsetY);
     }
 
-    public void UpdateGridState(Vector2 position, Transform block)
-    {
-        gridState[position] = block;
-    }
 
-
-    public bool IsValidPositionToFall(Vector2 fallPos)
+    public bool IsValidPosition(Vector2Int gridPos)
     {
-        if (fallPos.y <= GridBottomLeft.y + TileSize / 2)
-        {
-            Debug.LogWarning($"IsValidPositionToFall: index out of bounds for y: {fallPos.y}. Returning false");
-            return false;
-        }
+        if (gridPos.x < 0 || gridPos.x >= 10) return false;
+        if (gridPos.y < 0 || gridPos.y >= 20) return false;
+
+        if (_gridState.ContainsKey(gridPos)) return false;
 
         return true;
+    }
+
+    public void UpdateGridState(Vector2Int position, Transform block)
+    {
+        _gridState[position] = block;
+    }
+
+    public Vector2Int WorldToGrid(Vector2 worldPos)
+    {
+        float relativeX = (worldPos.x - GridBottomLeft.x) / TileSize;
+        float relativeY = (worldPos.y - GridBottomLeft.y) / TileSize;
+
+        int gridX = Mathf.FloorToInt(relativeX);
+        int gridY = Mathf.FloorToInt(relativeY);
+
+        return new Vector2Int(gridX, gridY);
+    }
+
+    public Vector2 GridToWorld(Vector2Int gridPos)
+    {
+        float worldX = GridBottomLeft.x + gridPos.x * TileSize + TileSize / 2f;
+        float worldY = GridBottomLeft.y + gridPos.y * TileSize + TileSize / 2f;
+
+        return new Vector2(worldX, worldY);
     }
 }

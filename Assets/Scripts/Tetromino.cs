@@ -57,7 +57,8 @@ public class Tetromino : MonoBehaviour
             }
             else
             {
-                LockAndSpawnNew();
+                LockTetromino();
+                GameManager.Instance.SpawnNewTetromino();
             }
         }
     }
@@ -162,7 +163,7 @@ public class Tetromino : MonoBehaviour
     }
 
 
-    private void LockAndSpawnNew()
+    private void LockTetromino()
     {
         _isLocked = true;
 
@@ -172,7 +173,5 @@ public class Tetromino : MonoBehaviour
             Debug.Log($"Dictionary updated: {gridPos}, {block}");
             GameManager.Instance.UpdateGridState(gridPos, block);
         }
-
-        GameManager.Instance.SpawnNewTetromino();
     }
 }

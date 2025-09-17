@@ -83,14 +83,7 @@ public class Tetromino : MonoBehaviour
     {
         if (_isLocked) return;
 
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxRotate, AudioManager.Instance.sfxVolume);
-
-        if (CanRotateHere(angle)) transform.Rotate(0, 0, angle);
-        // else RotateAndReposition();
-    }
-
-    private bool CanRotateHere(int angle)
-    {
+        // Check if out of bounds and reposition
         foreach (Transform block in transform)
         {
             var result = CheckBlockAfterRotation(block, transform, angle);
@@ -116,7 +109,9 @@ public class Tetromino : MonoBehaviour
             }
         }
 
-        return true;
+        // Apply rotation and sfx
+        transform.Rotate(0, 0, angle);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxRotate, AudioManager.Instance.sfxVolume);
     }
 
     BoundCheckResult CheckBlockAfterRotation(Transform block, Transform parent, float angle)

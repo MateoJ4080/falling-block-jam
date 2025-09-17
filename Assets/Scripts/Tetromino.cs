@@ -6,6 +6,15 @@ public class Tetromino : MonoBehaviour
     private float lastUpdateTime;
     private bool _isLocked;
 
+    enum BoundCheckResult
+    {
+        Inside,
+        OutLeft,
+        OutRight,
+        OutBottom,
+        OutTop
+    }
+
     private void Awake()
     {
         controls = new PlayerControls();
@@ -74,7 +83,56 @@ public class Tetromino : MonoBehaviour
         if (_isLocked) return;
 
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxRotate, AudioManager.Instance.sfxVolume);
-        transform.Rotate(0, 0, angle);
+
+        if (CanRotateHere(angle)) transform.Rotate(0, 0, angle);
+        // else RotateAndReposition();
+    }
+
+    private bool CanRotateHere(int angle)
+    {
+        foreach (Transform block in transform)
+        {
+            var result = CheckBlockAfterRotation(block, transform, angle);
+
+            if (result != BoundCheckResult.Inside)
+            {
+                switch (result)
+                {
+                    case BoundCheckResult.OutLeft:
+                        transform.position += Vector3.right * GameManager.Instance.TileSize;
+                        break;
+                    case BoundCheckResult.OutRight:
+                        transform.position += Vector3.left * GameManager.Instance.TileSize;
+                        break;
+                    case BoundCheckResult.OutBottom:
+                        transform.position += Vector3.up * GameManager.Instance.TileSize;
+                        break;
+                    case BoundCheckResult.OutTop:
+                        transform.position += Vector3.down * GameManager.Instance.TileSize;
+                        break;
+                }
+                break;
+            }
+        }
+
+        return true;
+    }
+
+    BoundCheckResult CheckBlockAfterRotation(Transform block, Transform parent, float angle)
+    {
+        Vector3 dir = block.position - parent.position;
+        dir = Quaternion.Euler(0, 0, angle) * dir;
+        Vector2Int gridPos = GameManager.Instance.WorldToGrid(parent.position + dir);
+
+        int x = gridPos.x;
+        int y = gridPos.y;
+
+        if (x < 0) return BoundCheckResult.OutLeft;
+        if (x >= 10) return BoundCheckResult.OutRight;
+        if (y < 0) return BoundCheckResult.OutBottom;
+        if (y >= 20) return BoundCheckResult.OutTop;
+
+        return BoundCheckResult.Inside;
     }
 
     private bool CanFall()

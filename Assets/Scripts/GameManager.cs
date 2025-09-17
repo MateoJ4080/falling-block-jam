@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using Unity.Android.Gradle;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour

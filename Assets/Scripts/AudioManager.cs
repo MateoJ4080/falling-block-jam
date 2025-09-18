@@ -10,7 +10,7 @@ public class AudioManager : MonoBehaviour
 
     [Header("Sound Effects")]
     public AudioClip sfxRotate;
-    public AudioClip sfxLineClear;
+    public AudioClip sfxClearLine;
 
     [Header("Volume")]
 
@@ -23,15 +23,15 @@ public class AudioManager : MonoBehaviour
         else Destroy(gameObject);
     }
 
-    public void PlayMusic(AudioClip clip, float volume = 1f)
+    public void PlayMusic(AudioClip clip)
     {
         musicSource.clip = clip;
-        musicSource.volume = volume;
+        musicSource.volume = musicVolume;
         musicSource.Play();
     }
 
-    public void PlaySFX(AudioClip clip, float volume = 1f)
+    public void PlaySFX(AudioClip clip)
     {
-        sfxSource.PlayOneShot(clip, volume);
+        sfxSource.PlayOneShot(clip, sfxVolume);
     }
 }

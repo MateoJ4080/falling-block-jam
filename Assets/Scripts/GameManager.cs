@@ -1,12 +1,18 @@
 using System.Collections.Generic;
+using System.Linq;
+using Unity.Android.Gradle;
+using Unity.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
     //Grid
-    private Dictionary<Vector2Int, Transform> _gridState = new();
+    private readonly Dictionary<Vector2Int, Transform> _gridState = new();
+    public Dictionary<Vector2Int, Transform> GridState => _gridState;
     [SerializeField] SpriteRenderer gridSr;
     public Vector2 GridBottomLeft { get; set; }
 
@@ -102,5 +108,62 @@ public class GameManager : MonoBehaviour
         float worldY = GridBottomLeft.y + gridPos.y * TileSize + TileSize / 2f;
 
         return new Vector2(worldX, worldY);
+    }
+
+    public bool IsLineComplete(int height)
+    {
+        for (int i = 1; i < 10; i++) // Might change "10" for "GridLength" in the future
+        {
+            if (!Instance.GridState.ContainsKey(new Vector2Int(i, height))) return false;
+        }
+        return true;
+    }
+
+    public bool IsLineEmpty(int height)
+    {
+        return !GridState.Keys.Any(pos => pos.y == height);
+    }
+
+    public void ClearLines(List<int> heights)
+    {
+        for (int x = 0; x < 10; x++)
+        {
+            foreach (int height in heights)
+            {
+                if (Instance.GridState.TryGetValue(new Vector2Int(x, height), out var block))
+                {
+                    Destroy(block.gameObject);
+                    Instance.GridState.Remove(new Vector2Int(x, height));
+                }
+            }
+        }
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxClearLine);
+
+        DropLinesAbove(heights);
+    }
+
+    public void DropLinesAbove(List<int> heights)
+    {
+        int lowestClearedHeight = heights[0];
+
+        // Move all lines above cleared rows down by appropriate amount
+        for (int currentHeight = lowestClearedHeight + 1; currentHeight < 20; currentHeight++)
+        {
+            int tilesToDrop = heights.Count(i => i < currentHeight);
+
+            if (!IsLineEmpty(currentHeight))
+            {
+                for (int x = 0; x < 10; x++)
+                {
+                    if (GridState.TryGetValue(new(x, currentHeight), out var block))
+                    {
+                        block.position = GridToWorld(new(x, currentHeight - tilesToDrop));
+                        GridState.Add(new(x, currentHeight - tilesToDrop), block);
+
+                        GridState.Remove(new(x, currentHeight));
+                    }
+                }
+            }
+        }
     }
 }

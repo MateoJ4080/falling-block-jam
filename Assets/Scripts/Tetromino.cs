@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.Linq;
+using Unity.Android.Gradle;
 using UnityEngine;
 using UnityEngine.InputSystem;
 public class Tetromino : MonoBehaviour
@@ -58,7 +61,6 @@ public class Tetromino : MonoBehaviour
             else
             {
                 LockTetromino();
-                GameManager.Instance.SpawnNewTetromino();
             }
         }
     }
@@ -111,7 +113,7 @@ public class Tetromino : MonoBehaviour
 
         // Apply rotation and sfx
         transform.Rotate(0, 0, angle);
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxRotate, AudioManager.Instance.sfxVolume);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxRotate);
     }
 
     BoundCheckResult CheckBlockAfterRotation(Transform block, Transform parent, float angle)
@@ -161,12 +163,24 @@ public class Tetromino : MonoBehaviour
     private void LockTetromino()
     {
         _isLocked = true;
+        List<int> completedHeights = new();
 
         foreach (Transform block in transform)
         {
             Vector2Int gridPos = GameManager.Instance.WorldToGrid(block.transform.position);
-            Debug.Log($"Dictionary updated: {gridPos}, {block}");
+
+            // Update GridState dictionary
             GameManager.Instance.UpdateGridState(gridPos, block);
+
+            // Check for completed line
+            if (GameManager.Instance.IsLineComplete(gridPos.y))
+            {
+                if (!completedHeights.Contains(gridPos.y)) completedHeights.Add(gridPos.y);
+                completedHeights.Sort();
+            }
         }
+
+        if (completedHeights.Count != 0) GameManager.Instance.ClearLines(completedHeights);
+        GameManager.Instance.SpawnNewTetromino();
     }
 }

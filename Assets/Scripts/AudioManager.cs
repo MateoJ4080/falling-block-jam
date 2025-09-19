@@ -8,6 +8,10 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource musicSource;
     [SerializeField] private AudioSource sfxSource;
 
+    [Header("Music")]
+    public AudioClip musicMainMenu;
+    public AudioClip musicGameplay;
+
     [Header("Sound Effects")]
     public AudioClip sfxRotate;
     public AudioClip sfxClearLine;
@@ -21,6 +25,8 @@ public class AudioManager : MonoBehaviour
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
+
+        DontDestroyOnLoad(gameObject);
     }
 
     public void PlayMusic(AudioClip clip)

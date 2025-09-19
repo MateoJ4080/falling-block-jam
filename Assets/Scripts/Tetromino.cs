@@ -15,7 +15,8 @@ public class Tetromino : MonoBehaviour
         OutLeft,
         OutRight,
         OutBottom,
-        OutTop
+        OutTop,
+        Overlapping
     }
 
     private void Awake()
@@ -84,13 +85,19 @@ public class Tetromino : MonoBehaviour
     public void Rotate(int angle)
     {
         if (_isLocked) return;
+        bool canRotate = true;
 
         // Check if out of bounds and reposition
         foreach (Transform block in transform)
         {
             var result = CheckBlockAfterRotation(block, transform, angle);
 
-            if (result != BoundCheckResult.Inside)
+            if (result == BoundCheckResult.Overlapping)
+            {
+                canRotate = false;
+                break;
+            }
+            else if (result != BoundCheckResult.Inside)
             {
                 switch (result)
                 {
@@ -112,8 +119,11 @@ public class Tetromino : MonoBehaviour
         }
 
         // Apply rotation and sfx
-        transform.Rotate(0, 0, angle);
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxRotate);
+        if (canRotate)
+        {
+            transform.Rotate(0, 0, angle);
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxRotate);
+        }
     }
 
     BoundCheckResult CheckBlockAfterRotation(Transform block, Transform parent, float angle)
@@ -125,10 +135,14 @@ public class Tetromino : MonoBehaviour
         int x = gridPos.x;
         int y = gridPos.y;
 
+        // Check if out of bounds
         if (x < 0) return BoundCheckResult.OutLeft;
         if (x >= 10) return BoundCheckResult.OutRight;
         if (y < 0) return BoundCheckResult.OutBottom;
         if (y >= 20) return BoundCheckResult.OutTop;
+
+        // Check if overlapping another block
+        if (GameManager.Instance.GridState.ContainsKey(new(x, y))) return BoundCheckResult.Overlapping;
 
         return BoundCheckResult.Inside;
     }

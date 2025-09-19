@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: c0cf62fa9acc1064cbb94d644e116620
+guid: 48fde4e0ee734ce4087947ce2c50e362
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1923193942280702235
-    second: An-empty-Tetris-well_0
+      213: 4579527440954601640
+    second: Brokkoli_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 500
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: An-empty-Tetris-well_0
+      name: Brokkoli_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 151
-        height: 301
+        x: 7
+        y: 7
+        width: 498
+        height: 498
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5e6fc2c8c417f45e0800000000000000
-      internalID: -1923193942280702235
+      spriteID: 8a0b045b1ffbd8f30800000000000000
+      internalID: 4579527440954601640
       vertices: []
       indices: 
       edges: []
@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Brokkoli_0: 4579527440954601640
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

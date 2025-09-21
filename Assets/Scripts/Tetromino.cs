@@ -1,11 +1,14 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.PlayerLoop;
 using UnityEngine.SceneManagement;
 public class Tetromino : MonoBehaviour
 {
     private PlayerControls controls;
     private float lastUpdateTime;
+    private float lastMoveTime;
     private bool _isLocked;
 
     enum BoundCheckResult
@@ -22,11 +25,9 @@ public class Tetromino : MonoBehaviour
     {
         controls = new PlayerControls();
 
-        controls.Piece.Move.performed += ctx => Move(ctx);
         controls.Piece.RotateRight.performed += ctx => Rotate(-90);
         controls.Piece.RotateLeft.performed += ctx => Rotate(90);
     }
-
     private void Start()
     {
         lastUpdateTime = Time.time;
@@ -44,6 +45,7 @@ public class Tetromino : MonoBehaviour
 
     private void Update()
     {
+        HandleMove();
         Fall();
     }
 
@@ -67,23 +69,24 @@ public class Tetromino : MonoBehaviour
         }
     }
 
-    public void Move(InputAction.CallbackContext callbackContext)
+    public void HandleMove()
     {
         if (_isLocked) return;
 
-        Vector2 input = callbackContext.ReadValue<Vector2>();
+        Vector2 input = controls.Piece.Move.ReadValue<Vector2>();
         Vector2 direction = Vector2.zero;
 
-        // Avoid moving in two directions at the same time
-        if (Mathf.Abs(input.x) > 0)
-            direction = new Vector2(Mathf.Sign(input.x), 0);
-        else if (input.y < 0)
-            direction = new Vector2(0, -1);
+        if (Mathf.Abs(input.x) > 0) direction.x = Mathf.Sign(input.x);
+        if (input.y < 0) direction.y = -1;
 
-        if (CanMoveTo(direction))
+        if (direction != Vector2.zero && Time.time >= lastMoveTime + 0.1f)
         {
-            transform.position += (Vector3)(direction * GameManager.Instance.TileSize);
-            AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxMove);
+            if (CanMoveTo(direction))
+            {
+                transform.position += (Vector3)(direction * GameManager.Instance.TileSize);
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxMove);
+            }
+            lastMoveTime = Time.time;
         }
     }
 

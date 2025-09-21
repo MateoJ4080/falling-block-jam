@@ -1,6 +1,8 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -168,6 +170,27 @@ public class GameManager : MonoBehaviour
                         GridState.Remove(new(x, currentHeight));
                     }
                 }
+            }
+        }
+    }
+
+    public IEnumerator CheckGameOver(Transform tetromino)
+    {
+        foreach (Transform block in tetromino)
+        {
+            Vector2Int gridSpawnPos = Instance.WorldToGrid(block.position);
+
+            // Game over sequence
+            if (Instance.GridState.ContainsKey(gridSpawnPos))
+            {
+                Instance.IsGameOver = true;
+
+                AudioManager.Instance.musicSource.Stop();
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxGameOver);
+
+                yield return new WaitForSeconds(AudioManager.Instance.sfxGameOver.length);
+                SceneManager.LoadScene("MainMenu");
+                yield break;
             }
         }
     }

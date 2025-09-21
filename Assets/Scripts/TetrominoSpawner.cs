@@ -11,6 +11,8 @@ public class TetrominoSpawner : MonoBehaviour
 
     public void SpawnRandom()
     {
+        if (GameManager.Instance.IsGameOver) return;
+
         // Random selection
         GameObject prefab = tetrominos[Random.Range(0, tetrominos.Length)];
 
@@ -21,10 +23,6 @@ public class TetrominoSpawner : MonoBehaviour
 
         GameManager.Instance.ActiveTetromino = tetromino;
 
-        foreach (Transform block in tetromino.transform)
-        {
-            Vector2Int gridSpawnPos = GameManager.Instance.WorldToGrid(block.position);
-            if (GameManager.Instance.GridState.ContainsKey(gridSpawnPos)) GameManager.Instance.IsGameOver = true;
-        }
+        StartCoroutine(GameManager.Instance.CheckGameOver(tetromino.transform));
     }
 }

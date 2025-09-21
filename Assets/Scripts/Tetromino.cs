@@ -197,8 +197,6 @@ public class Tetromino : MonoBehaviour
     {
         _isLocked = true;
 
-        if (GameManager.Instance.IsGameOver) SceneManager.LoadScene("MainMenu");
-
         List<int> completedHeights = new();
 
         foreach (Transform block in transform)

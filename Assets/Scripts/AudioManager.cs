@@ -9,8 +9,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioMixer mixer;
 
     [Header("Audio Sources")]
-    [SerializeField] private AudioSource musicSource;
-    [SerializeField] private AudioSource sfxSource;
+    public AudioSource musicSource;
+    public AudioSource sfxSource;
 
     [Header("Music")]
     public AudioClip musicMainMenu;
@@ -20,6 +20,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip sfxRotate;
     public AudioClip sfxClearLine;
     public AudioClip sfxMove;
+    public AudioClip sfxGameOver;
 
     private void Awake()
     {

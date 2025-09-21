@@ -1,41 +1,43 @@
 using System.Collections.Generic;
 using System.Linq;
-using Unity.Android.Gradle;
-using Unity.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    //Grid
+    public GameObject ActiveTetromino { get; set; }
+    public float TileSize { get; private set; }
+    public bool IsGameOver { get; set; }
+
+    // Grid
     private readonly Dictionary<Vector2Int, Transform> _gridState = new();
     public Dictionary<Vector2Int, Transform> GridState => _gridState;
     [SerializeField] SpriteRenderer gridSr;
     public Vector2 GridBottomLeft { get; set; }
 
+    // Tetrominoes
     [SerializeField] TetrominoSpawner spawner;
     [SerializeField] private float fallSpeed = 1f;
     public float FallSpeed => fallSpeed;
-
-    public float TileSize { get; private set; }
-
-
-    public GameObject ActiveTetromino { get; set; }
 
     private void Awake()
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
 
-        float tileWidth = gridSr.size.x / 10f;
-        float tileHeight = gridSr.size.y / 20f;
+        float tileWidth = gridSr.size.x / 10f * gridSr.transform.localScale.x;
+        float tileHeight = gridSr.size.y / 20f * gridSr.transform.localScale.y;
         TileSize = Mathf.Min(tileWidth, tileHeight);
+        GridBottomLeft = (Vector2)gridSr.transform.position - new Vector2(gridSr.size.x * gridSr.transform.localScale.x / 2f, gridSr.size.y * gridSr.transform.localScale.y / 2f);
 
-        GridBottomLeft = (Vector2)gridSr.transform.position - new Vector2(gridSr.size.x / 2f, gridSr.size.y / 2f);
-        Debug.Log($"GridBottomLeft: {GridBottomLeft}");
+        AudioManager.Instance.PlayMusic(AudioManager.Instance.musicGameplay);
+
+        Debug.LogWarning($"Grid (0,0) world pos: {GridToWorld(new Vector2Int(0, 0))}");
+        Debug.LogWarning($"Grid (1,1) world pos: {GridToWorld(new Vector2Int(1, 1))}");
+        Debug.LogWarning($"TileSize: {TileSize}");
+        Debug.LogWarning($"GridBottomLeft world: {GridBottomLeft}");
+        Debug.LogWarning($"GridBottomLeft grid: {WorldToGrid(GridBottomLeft)}");
     }
 
     public void SpawnNewTetromino()
@@ -72,14 +74,17 @@ public class GameManager : MonoBehaviour
                 break;
         }
 
-        return gridSr.transform.position + (Vector3.up * (gridSr.size.y / 2f)) - (Vector3.right * offsetX) - (Vector3.up * offsetY);
+        Vector3 gridScale = gridSr.transform.localScale;
+        float gridHeight = gridSr.size.y * gridScale.y;
+
+        return gridSr.transform.position + (Vector3.up * (gridHeight / 2f)) - (Vector3.right * offsetX) - (Vector3.up * offsetY);
     }
 
 
     public bool IsValidPosition(Vector2Int gridPos)
     {
-        if (gridPos.x < 0 || gridPos.x >= 10) return false;
-        if (gridPos.y < 0 || gridPos.y >= 20) return false;
+        if (gridPos.x < 0 || gridPos.x > 9) return false;
+        if (gridPos.y < 0 || gridPos.y >= 19) return false;
 
         if (_gridState.ContainsKey(gridPos)) return false;
 
@@ -104,8 +109,8 @@ public class GameManager : MonoBehaviour
 
     public Vector2 GridToWorld(Vector2Int gridPos)
     {
-        float worldX = GridBottomLeft.x + gridPos.x * TileSize + TileSize / 2f;
-        float worldY = GridBottomLeft.y + gridPos.y * TileSize + TileSize / 2f;
+        float worldX = GridBottomLeft.x + (gridPos.x * TileSize) + (TileSize / 2f);
+        float worldY = GridBottomLeft.y + (gridPos.y * TileSize) + (TileSize / 2f);
 
         return new Vector2(worldX, worldY);
     }
@@ -137,7 +142,7 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxClearLine);
+        if (AudioManager.Instance != null) AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxClearLine);
 
         DropLinesAbove(heights);
     }

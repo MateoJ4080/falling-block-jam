@@ -1,8 +1,12 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance { get; set; }
+
+    [Header("Audio Sources")]
+    [SerializeField] AudioMixer mixer;
 
     [Header("Audio Sources")]
     [SerializeField] private AudioSource musicSource;
@@ -15,11 +19,7 @@ public class AudioManager : MonoBehaviour
     [Header("Sound Effects")]
     public AudioClip sfxRotate;
     public AudioClip sfxClearLine;
-
-    [Header("Volume")]
-
-    public float sfxVolume;
-    public float musicVolume;
+    public AudioClip sfxMove;
 
     private void Awake()
     {
@@ -32,12 +32,25 @@ public class AudioManager : MonoBehaviour
     public void PlayMusic(AudioClip clip)
     {
         musicSource.clip = clip;
-        musicSource.volume = musicVolume;
         musicSource.Play();
     }
 
     public void PlaySFX(AudioClip clip)
     {
-        sfxSource.PlayOneShot(clip, sfxVolume);
+        sfxSource.PlayOneShot(clip);
+    }
+
+    // Assigned to slider in the inspector
+    public void SetMusicVolume(float value)
+    {
+        value = Mathf.Clamp(value, 0.0001f, 1f);
+        mixer.SetFloat("Music", Mathf.Log10(value) * 20);
+    }
+
+    // Assigned to slider in the inspector
+    public void SetSfxVolume(float value)
+    {
+        value = Mathf.Clamp(value, 0.0001f, 1f);
+        mixer.SetFloat("SFX", Mathf.Log10(value) * 20);
     }
 }

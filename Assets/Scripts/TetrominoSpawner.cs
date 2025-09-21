@@ -20,5 +20,11 @@ public class TetrominoSpawner : MonoBehaviour
         tetromino.transform.localScale = Vector3.one * GameManager.Instance.TileSize;
 
         GameManager.Instance.ActiveTetromino = tetromino;
+
+        foreach (Transform block in tetromino.transform)
+        {
+            Vector2Int gridSpawnPos = GameManager.Instance.WorldToGrid(block.position);
+            if (GameManager.Instance.GridState.ContainsKey(gridSpawnPos)) GameManager.Instance.IsGameOver = true;
+        }
     }
 }

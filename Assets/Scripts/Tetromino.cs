@@ -1,8 +1,7 @@
 using System.Collections.Generic;
-using System.Linq;
-using Unity.Android.Gradle;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 public class Tetromino : MonoBehaviour
 {
     private PlayerControls controls;
@@ -56,6 +55,8 @@ public class Tetromino : MonoBehaviour
         {
             if (CanFall())
             {
+                Debug.LogWarning($"Falling to {transform.position + Vector3.down * GameManager.Instance.TileSize}");
+
                 transform.position += Vector3.down * GameManager.Instance.TileSize;
                 lastUpdateTime = Time.time;
             }
@@ -79,7 +80,11 @@ public class Tetromino : MonoBehaviour
         else if (input.y < 0)
             direction = new Vector2(0, -1);
 
-        if (CanMoveTo(direction)) transform.position += (Vector3)(direction * GameManager.Instance.TileSize);
+        if (CanMoveTo(direction))
+        {
+            transform.position += (Vector3)(direction * GameManager.Instance.TileSize);
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxMove);
+        }
     }
 
     public void Rotate(int angle)
@@ -122,7 +127,13 @@ public class Tetromino : MonoBehaviour
         if (canRotate)
         {
             transform.Rotate(0, 0, angle);
-            AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxRotate);
+
+            foreach (Transform block in transform)
+            {
+                block.Rotate(0, 0, -angle);
+            }
+
+            if (AudioManager.Instance != null) AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxRotate);
         }
     }
 
@@ -155,7 +166,12 @@ public class Tetromino : MonoBehaviour
             Vector2 worldPos = (Vector2)block.position - new Vector2(0, GameManager.Instance.TileSize);
             Vector2Int gridPos = GameManager.Instance.WorldToGrid(worldPos);
 
-            if (!GameManager.Instance.IsValidPosition(gridPos)) return false;
+            Debug.Log($"IsValid: Checking {gridPos} for {block.name}");
+
+            if (!GameManager.Instance.IsValidPosition(gridPos))
+            {
+                return false;
+            }
         }
         return true;
     }
@@ -177,6 +193,9 @@ public class Tetromino : MonoBehaviour
     private void LockTetromino()
     {
         _isLocked = true;
+
+        if (GameManager.Instance.IsGameOver) SceneManager.LoadScene("MainMenu");
+
         List<int> completedHeights = new();
 
         foreach (Transform block in transform)

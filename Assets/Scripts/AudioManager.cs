@@ -1,12 +1,8 @@
 using UnityEngine;
-using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance { get; set; }
-
-    [Header("Audio Sources")]
-    [SerializeField] AudioMixer mixer;
 
     [Header("Audio Sources")]
     public AudioSource musicSource;
@@ -44,14 +40,13 @@ public class AudioManager : MonoBehaviour
     // Assigned to slider in the inspector
     public void SetMusicVolume(float value)
     {
-        value = Mathf.Clamp(value, 0.0001f, 1f);
-        mixer.SetFloat("Music", Mathf.Log10(value) * 20);
+        musicSource.volume = value * 0.05f;
+
     }
 
     // Assigned to slider in the inspector
     public void SetSfxVolume(float value)
     {
-        value = Mathf.Clamp(value, 0.0001f, 1f);
-        mixer.SetFloat("SFX", Mathf.Log10(value) * 20);
+        sfxSource.volume = value * 0.05f;
     }
 }

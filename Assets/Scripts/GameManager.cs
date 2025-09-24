@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,9 @@ public class GameManager : MonoBehaviour
     public GameObject ActiveTetromino { get; set; }
     public float TileSize { get; private set; }
     public bool IsGameOver { get; set; }
+
+    // Events
+    public event Action<int> OnLineCleared;
 
     // Grid
     private readonly Dictionary<Vector2Int, Transform> _gridState = new();
@@ -34,12 +38,6 @@ public class GameManager : MonoBehaviour
         GridBottomLeft = (Vector2)gridSr.transform.position - new Vector2(gridSr.size.x * gridSr.transform.localScale.x / 2f, gridSr.size.y * gridSr.transform.localScale.y / 2f);
 
         AudioManager.Instance.PlayMusic(AudioManager.Instance.musicGameplay);
-
-        Debug.LogWarning($"Grid (0,0) world pos: {GridToWorld(new Vector2Int(0, 0))}");
-        Debug.LogWarning($"Grid (1,1) world pos: {GridToWorld(new Vector2Int(1, 1))}");
-        Debug.LogWarning($"TileSize: {TileSize}");
-        Debug.LogWarning($"GridBottomLeft world: {GridBottomLeft}");
-        Debug.LogWarning($"GridBottomLeft grid: {WorldToGrid(GridBottomLeft)}");
     }
 
     public void SpawnNewTetromino()
@@ -144,7 +142,10 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+
         if (AudioManager.Instance != null) AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxClearLine);
+
+        OnLineCleared.Invoke(10);
 
         DropLinesAbove(heights);
     }

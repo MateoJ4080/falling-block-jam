@@ -57,8 +57,6 @@ public class Tetromino : MonoBehaviour
         {
             if (CanFall())
             {
-                Debug.LogWarning($"Falling to {transform.position + Vector3.down * GameManager.Instance.TileSize}");
-
                 transform.position += Vector3.down * GameManager.Instance.TileSize;
                 lastUpdateTime = Time.time;
             }
@@ -168,8 +166,6 @@ public class Tetromino : MonoBehaviour
             // Check if it's at the grid bottom or square below is occupied
             Vector2 worldPos = (Vector2)block.position - new Vector2(0, GameManager.Instance.TileSize);
             Vector2Int gridPos = GameManager.Instance.WorldToGrid(worldPos);
-
-            Debug.Log($"IsValid: Checking {gridPos} for {block.name}");
 
             if (!GameManager.Instance.IsValidPosition(gridPos))
             {

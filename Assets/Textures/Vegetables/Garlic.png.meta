@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 7aa8b7ddbf58ba74fb876d2f907145e3
+guid: edd0114db8cce9e4588487f13586db58
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4120439717557877927
-    second: orange+_0
+      213: -4863325477555420748
+    second: garlic%2B_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -109,11 +109,24 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: orange+_0
+      name: garlic%2B_0
       rect:
         serializedVersion: 2
         x: 7
@@ -128,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7acb273971ebe2930800000000000000
-      internalID: 4120439717557877927
+      spriteID: 4b1c333ce3ff18cb0800000000000000
+      internalID: -4863325477555420748
       vertices: []
       indices: 
       edges: []
@@ -148,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      orange+_0: 4120439717557877927
+      garlic%2B_0: -4863325477555420748
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

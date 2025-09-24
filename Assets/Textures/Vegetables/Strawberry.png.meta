@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 48fde4e0ee734ce4087947ce2c50e362
+guid: f257698a3efd58a41bce6148038ebc41
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4579527440954601640
-    second: Brokkoli_0
+      213: 3894196590144477700
+    second: strawberry%2B%2B(3)_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -109,11 +109,24 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Brokkoli_0
+      name: strawberry%2B%2B(3)_0
       rect:
         serializedVersion: 2
         x: 7
@@ -128,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8a0b045b1ffbd8f30800000000000000
-      internalID: 4579527440954601640
+      spriteID: 40a59199a27fa0630800000000000000
+      internalID: 3894196590144477700
       vertices: []
       indices: 
       edges: []
@@ -148,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Brokkoli_0: 4579527440954601640
+      strawberry%2B%2B(3)_0: 3894196590144477700
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

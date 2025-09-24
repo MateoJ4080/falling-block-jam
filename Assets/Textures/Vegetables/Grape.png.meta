@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f257698a3efd58a41bce6148038ebc41
+guid: 11c92f18b61825b4098ee9340cbc17bd
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3894196590144477700
-    second: strawberry%2B%2B(3)_0
+      213: 1244646318562688635
+    second: grape++(1)_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -109,11 +109,24 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: strawberry%2B%2B(3)_0
+      name: grape++(1)_0
       rect:
         serializedVersion: 2
         x: 7
@@ -128,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 40a59199a27fa0630800000000000000
-      internalID: 3894196590144477700
+      spriteID: b7e3de87b3fd54110800000000000000
+      internalID: 1244646318562688635
       vertices: []
       indices: 
       edges: []
@@ -148,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      strawberry%2B%2B(3)_0: 3894196590144477700
+      grape++(1)_0: 1244646318562688635
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

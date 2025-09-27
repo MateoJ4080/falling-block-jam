@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,20 +11,25 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     public GameObject ActiveTetromino { get; set; }
+    public GameObject NextTetromino { get; set; }
+    public GameObject HoldTetromino { get; set; }
+
     public float TileSize { get; private set; }
     public bool IsGameOver { get; set; }
 
     // Events
     public event Action<int> OnLineCleared;
+    public event Action OnNextTetrominoChanged;
 
     // Grid
+    [SerializeField] private SpriteRenderer gridSr;
     private readonly Dictionary<Vector2Int, Transform> _gridState = new();
     public Dictionary<Vector2Int, Transform> GridState => _gridState;
-    [SerializeField] SpriteRenderer gridSr;
     public Vector2 GridBottomLeft { get; set; }
 
     // Tetrominoes
-    [SerializeField] TetrominoSpawner spawner;
+    [SerializeField] private GameObject[] tetrominoVisuals;
+    [SerializeField] private TetrominoSpawner spawner;
     [SerializeField] private float fallSpeed = 1f;
     public float FallSpeed => fallSpeed;
 
@@ -38,11 +44,20 @@ public class GameManager : MonoBehaviour
         GridBottomLeft = (Vector2)gridSr.transform.position - new Vector2(gridSr.size.x * gridSr.transform.localScale.x / 2f, gridSr.size.y * gridSr.transform.localScale.y / 2f);
 
         AudioManager.Instance.PlayMusic(AudioManager.Instance.musicGameplay);
+
+        SetNextTetromino();
+    }
+
+    void Start()
+    {
+        SpawnNewTetromino();
     }
 
     public void SpawnNewTetromino()
     {
-        spawner.SpawnRandom();
+        if (NextTetromino == null) Debug.Log("NextTetromino is null");
+        spawner.SpawnTetromino(NextTetromino);
+        SetNextTetromino();
     }
 
     public Vector3 GetSpawnPosition(GameObject prefab)
@@ -194,5 +209,11 @@ public class GameManager : MonoBehaviour
                 yield break;
             }
         }
+    }
+
+    public void SetNextTetromino()
+    {
+        NextTetromino = spawner.tetrominos[UnityEngine.Random.Range(0, spawner.tetrominos.Length)];
+        OnNextTetrominoChanged?.Invoke();
     }
 }

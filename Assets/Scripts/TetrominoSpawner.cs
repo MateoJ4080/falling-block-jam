@@ -1,20 +1,14 @@
+using System;
 using UnityEngine;
 
 public class TetrominoSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject[] tetrominos;
+    public event Action OnTetrominoSpawned;
+    public GameObject[] tetrominos;
 
-    void Start()
-    {
-        SpawnRandom();
-    }
-
-    public void SpawnRandom()
+    public void SpawnTetromino(GameObject prefab)
     {
         if (GameManager.Instance.IsGameOver) return;
-
-        // Random selection
-        GameObject prefab = tetrominos[Random.Range(0, tetrominos.Length)];
 
         Vector3 spawnPos = GameManager.Instance.GetSpawnPosition(prefab);
 
@@ -22,6 +16,8 @@ public class TetrominoSpawner : MonoBehaviour
         tetromino.transform.localScale = Vector3.one * GameManager.Instance.TileSize;
 
         GameManager.Instance.ActiveTetromino = tetromino;
+
+        OnTetrominoSpawned?.Invoke();
 
         StartCoroutine(GameManager.Instance.CheckGameOver(tetromino.transform));
     }

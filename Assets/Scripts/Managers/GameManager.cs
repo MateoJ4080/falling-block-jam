@@ -5,6 +5,7 @@ using System.Linq;
 using Unity.Android.Gradle;
 using Unity.Mathematics;
 using Unity.VisualScripting;
+using UnityEditor.U2D.Aseprite;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -172,7 +173,6 @@ public class GameManager : MonoBehaviour
             {
                 if (Instance.GridState.TryGetValue(new Vector2Int(x, height), out var block))
                 {
-                    Debug.Log($"Destroying block in ({x}, {height})");
                     Destroy(block.gameObject);
                     Instance.GridState.Remove(new Vector2Int(x, height));
                 }
@@ -247,6 +247,7 @@ public class GameManager : MonoBehaviour
             HoldTetromino.transform.localPosition = Vector3.zero;
 
             FixBlocksRotation(HoldTetromino);
+            GameUIManager.Instance.UpdateHoldTetrominoUI(HoldTetromino);
 
             Destroy(HoldTetromino.GetComponent<Tetromino>());
             Destroy(active);
@@ -268,10 +269,13 @@ public class GameManager : MonoBehaviour
             HoldTetromino.transform.localPosition = Vector3.zero;
 
             FixBlocksRotation(HoldTetromino);
+            GameUIManager.Instance.UpdateHoldTetrominoUI(HoldTetromino);
 
             // Switch Hold to Actve
             ActiveTetromino = Instantiate(tempHold, GetSpawnPosition(tempHold), Quaternion.identity);
+            ActiveTetromino.transform.localScale = Vector3.one * TileSize;
             ActiveTetromino.AddComponent<Tetromino>();
+
 
             hasUsedHoldThisTurn = true;
         }

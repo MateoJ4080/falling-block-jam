@@ -61,19 +61,33 @@ public class GameUIManager : MonoBehaviour
         uiNext = Instantiate(nextPrefab, nextContainer.transform);
         uiNext.transform.localPosition = Vector3.zero - GetUIPivotOffset(nextPrefab);
         uiNext.transform.rotation = Quaternion.Euler(-16.271f, 27.549f, -13.73f);
-        uiNext.transform.localScale = Vector3.one * 0.342f;
+        uiNext.transform.localScale = Vector3.one * 0.36f;
         if (nextPrefab.name == "I_Tetromino") uiNext.transform.localScale = Vector3.one * 0.3f; // Less scale because this tetromino is wider
 
         Destroy(uiNext.GetComponent<Tetromino>());
     }
 
-    private Vector3 GetUIPivotOffset(GameObject prefab)
+    public void UpdateHoldTetrominoUI(GameObject holdTetromino)
+    {
+        GameObject uiHold = holdTetromino;
+
+        uiHold.transform.localPosition = Vector3.zero - GetUIPivotOffset(uiHold);
+        uiHold.transform.rotation = Quaternion.Euler(-19.53f, -17.69f, 11.454f);
+        uiHold.transform.localScale = Vector3.one * 0.36f;
+        if (uiHold.name.StartsWith("I_Tetromino")) uiHold.transform.localScale = Vector3.one * 0.3f; // Less scale because this tetromino is wider
+
+    }
+
+    private Vector3 GetUIPivotOffset(GameObject tetromino)
     {
         float TileSize = GameManager.Instance.TileSize;
         float offsetX;
         float offsetY;
 
-        switch (prefab.name)
+        string tetrominoName = tetromino.name.Replace("(Clone)", "").Trim();
+
+
+        switch (tetrominoName)
         {
             case "I_Tetromino":
                 offsetX = 0;

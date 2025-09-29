@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Android.Gradle;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -235,10 +236,14 @@ public class GameManager : MonoBehaviour
 
     public void SetHoldTetromino(GameObject active)
     {
+
         if (HoldTetromino == null)
         {
             HoldTetromino = Instantiate(active, Vector3.zero, Quaternion.identity, holdContainer);
             HoldTetromino.transform.localPosition = Vector3.zero;
+
+            FixBlocksRotation(HoldTetromino);
+
             Destroy(HoldTetromino.GetComponent<Tetromino>());
             Destroy(active);
             SpawnNewTetromino();
@@ -256,11 +261,21 @@ public class GameManager : MonoBehaviour
             HoldTetromino = Instantiate(tempActive, Vector3.zero, Quaternion.identity, holdContainer);
             HoldTetromino.transform.localPosition = Vector3.zero;
 
+            FixBlocksRotation(HoldTetromino);
+
             // Switch Hold to Actve
             ActiveTetromino = Instantiate(tempHold, GetSpawnPosition(tempHold), Quaternion.identity);
             ActiveTetromino.AddComponent<Tetromino>();
         }
 
         // OnHoldTetrominoChanged?.Invoke();
+    }
+
+    private void FixBlocksRotation(GameObject tetromino)
+    {
+        foreach (Transform block in tetromino.transform)
+        {
+            block.rotation = Quaternion.identity;
+        }
     }
 }

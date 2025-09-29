@@ -1,9 +1,5 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.PlayerLoop;
-using UnityEngine.SceneManagement;
 public class Tetromino : MonoBehaviour
 {
     private PlayerControls controls;
@@ -191,6 +187,7 @@ public class Tetromino : MonoBehaviour
 
     private void LockTetromino()
     {
+        Debug.Log($"LockTetromino by {gameObject.name}");
         _isLocked = true;
 
         List<int> completedHeights = new();

@@ -61,8 +61,8 @@ public class GameUIManager : MonoBehaviour
         uiNext = Instantiate(nextPrefab, nextContainer.transform);
         uiNext.transform.localPosition = Vector3.zero - GetUIPivotOffset(nextPrefab);
         uiNext.transform.rotation = Quaternion.Euler(-16.271f, 27.549f, -13.73f);
-        uiNext.transform.localScale = Vector3.one * 0.42f;
-        if (nextPrefab.name == "I_Tetromino") uiNext.transform.localScale = Vector3.one * 0.32f; // Less scale because this block is wider
+        uiNext.transform.localScale = Vector3.one * 0.342f;
+        if (nextPrefab.name == "I_Tetromino") uiNext.transform.localScale = Vector3.one * 0.3f; // Less scale because this tetromino is wider
 
         Destroy(uiNext.GetComponent<Tetromino>());
     }

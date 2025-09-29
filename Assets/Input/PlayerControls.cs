@@ -53,6 +53,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SetHold"",
+                    ""type"": ""Button"",
+                    ""id"": ""37362b59-d0e7-4d49-8b6e-3c4029678fcd"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -130,6 +139,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""RotateLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""961ffc20-c5cd-42cc-9d8c-973a5cfb106d"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SetHold"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -720,6 +740,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Piece_Move = m_Piece.FindAction("Move", throwIfNotFound: true);
         m_Piece_RotateRight = m_Piece.FindAction("RotateRight", throwIfNotFound: true);
         m_Piece_RotateLeft = m_Piece.FindAction("RotateLeft", throwIfNotFound: true);
+        m_Piece_SetHold = m_Piece.FindAction("SetHold", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -802,6 +823,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Piece_Move;
     private readonly InputAction m_Piece_RotateRight;
     private readonly InputAction m_Piece_RotateLeft;
+    private readonly InputAction m_Piece_SetHold;
     public struct PieceActions
     {
         private @PlayerControls m_Wrapper;
@@ -809,6 +831,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_Piece_Move;
         public InputAction @RotateRight => m_Wrapper.m_Piece_RotateRight;
         public InputAction @RotateLeft => m_Wrapper.m_Piece_RotateLeft;
+        public InputAction @SetHold => m_Wrapper.m_Piece_SetHold;
         public InputActionMap Get() { return m_Wrapper.m_Piece; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -827,6 +850,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @RotateLeft.started += instance.OnRotateLeft;
             @RotateLeft.performed += instance.OnRotateLeft;
             @RotateLeft.canceled += instance.OnRotateLeft;
+            @SetHold.started += instance.OnSetHold;
+            @SetHold.performed += instance.OnSetHold;
+            @SetHold.canceled += instance.OnSetHold;
         }
 
         private void UnregisterCallbacks(IPieceActions instance)
@@ -840,6 +866,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @RotateLeft.started -= instance.OnRotateLeft;
             @RotateLeft.performed -= instance.OnRotateLeft;
             @RotateLeft.canceled -= instance.OnRotateLeft;
+            @SetHold.started -= instance.OnSetHold;
+            @SetHold.performed -= instance.OnSetHold;
+            @SetHold.canceled -= instance.OnSetHold;
         }
 
         public void RemoveCallbacks(IPieceActions instance)
@@ -1025,6 +1054,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnRotateRight(InputAction.CallbackContext context);
         void OnRotateLeft(InputAction.CallbackContext context);
+        void OnSetHold(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

@@ -1866,14 +1866,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridSr: {fileID: 1640609214}
-  tetrominoVisuals:
-  - {fileID: 6285624492638125605, guid: b4572f59536b98540b758a9524574f3f, type: 3}
-  - {fileID: 3952664049935563313, guid: a20834ac74e90a2449402978258f471c, type: 3}
-  - {fileID: 8088423514593455149, guid: cd854b90f2c0cd043bee74b7ab5a0217, type: 3}
-  - {fileID: 2717060368843451466, guid: 6fd3bf23e1722074ead45d74dd6c1d10, type: 3}
-  - {fileID: 8025472189961740563, guid: 6b5268fef8100e848aeeabe336ff094c, type: 3}
-  - {fileID: 8854240889757162218, guid: 935a1981e0e563e469ff917b912156c9, type: 3}
-  - {fileID: 404606382329075126, guid: af9ee338df1e7c94986225d4252d0b01, type: 3}
+  holdContainer: {fileID: 45595590}
   spawner: {fileID: 1608955762}
   fallSpeed: 1
 --- !u!4 &2145433618

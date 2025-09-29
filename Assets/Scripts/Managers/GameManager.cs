@@ -2,7 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor.SceneManagement;
+using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -16,10 +17,12 @@ public class GameManager : MonoBehaviour
 
     public float TileSize { get; private set; }
     public bool IsGameOver { get; set; }
+    private PlayerControls controls;
 
     // Events
     public event Action<int> OnLineCleared;
     public event Action OnNextTetrominoChanged;
+    public event Action OnHoldTetrominoChanged;
 
     // Grid
     [SerializeField] private SpriteRenderer gridSr;
@@ -28,7 +31,7 @@ public class GameManager : MonoBehaviour
     public Vector2 GridBottomLeft { get; set; }
 
     // Tetrominoes
-    [SerializeField] private GameObject[] tetrominoVisuals;
+    [SerializeField] private Transform holdContainer;
     [SerializeField] private TetrominoSpawner spawner;
     [SerializeField] private float fallSpeed = 1f;
     public float FallSpeed => fallSpeed;
@@ -42,6 +45,7 @@ public class GameManager : MonoBehaviour
         float tileHeight = gridSr.size.y / 20f * gridSr.transform.localScale.y;
         TileSize = Mathf.Min(tileWidth, tileHeight);
         GridBottomLeft = (Vector2)gridSr.transform.position - new Vector2(gridSr.size.x * gridSr.transform.localScale.x / 2f, gridSr.size.y * gridSr.transform.localScale.y / 2f);
+        controls = new PlayerControls();
 
         AudioManager.Instance.PlayMusic(AudioManager.Instance.musicGameplay);
 
@@ -51,6 +55,18 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         SpawnNewTetromino();
+
+        controls.Piece.SetHold.performed += ctx => SetHoldTetromino(ActiveTetromino);
+    }
+
+    private void OnEnable()
+    {
+        controls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        controls.Disable();
     }
 
     public void SpawnNewTetromino()
@@ -216,4 +232,36 @@ public class GameManager : MonoBehaviour
         NextTetromino = spawner.tetrominos[UnityEngine.Random.Range(0, spawner.tetrominos.Length)];
         OnNextTetrominoChanged?.Invoke();
     }
+
+    public void SetHoldTetromino(GameObject active)
+    {
+        if (HoldTetromino == null)
+        {
+            HoldTetromino = Instantiate(active, Vector3.zero, Quaternion.identity, holdContainer);
+            HoldTetromino.transform.localPosition = Vector3.zero;
+            Destroy(HoldTetromino.GetComponent<Tetromino>());
+            Destroy(active);
+            SpawnNewTetromino();
+        }
+        else
+        {
+            GameObject tempHold = HoldTetromino;
+            GameObject tempActive = ActiveTetromino;
+
+            Destroy(active);
+            Destroy(HoldTetromino);
+
+            // Switch Active to Hold
+            Destroy(tempActive.GetComponent<Tetromino>());
+            HoldTetromino = Instantiate(tempActive, Vector3.zero, Quaternion.identity, holdContainer);
+            HoldTetromino.transform.localPosition = Vector3.zero;
+
+            // Switch Hold to Actve
+            ActiveTetromino = Instantiate(tempHold, GetSpawnPosition(tempHold), Quaternion.identity);
+            ActiveTetromino.AddComponent<Tetromino>();
+        }
+
+        // OnHoldTetrominoChanged?.Invoke();
+    }
+
 }

@@ -27,19 +27,19 @@ public class GameUIManager : MonoBehaviour
 
     void Start()
     {
-        GameManager.Instance.OnLineCleared += UpdateScoreText;
+        GameManager.Instance.OnLineCleared += AddScore;
         TimeManager.OnTimeChanged += UpdateTimeText;
         GameManager.Instance.OnNextTetrominoChanged += UpdateNextTetrominoUI;
     }
 
     void OnDisable()
     {
-        GameManager.Instance.OnLineCleared -= UpdateScoreText;
+        GameManager.Instance.OnLineCleared -= AddScore;
         TimeManager.OnTimeChanged -= UpdateTimeText;
         GameManager.Instance.OnNextTetrominoChanged -= UpdateNextTetrominoUI;
     }
 
-    private void UpdateScoreText(int value)
+    private void AddScore(int value)
     {
         score += value;
         scoreTMP.text = score.ToString("D5");

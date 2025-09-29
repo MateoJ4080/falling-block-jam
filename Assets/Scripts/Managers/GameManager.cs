@@ -148,7 +148,7 @@ public class GameManager : MonoBehaviour
 
     public bool IsLineComplete(int height)
     {
-        for (int i = 1; i < 10; i++) // Might change "10" for "GridLength" in the future
+        for (int i = 0; i < 10; i++) // Might change "10" for "GridLength" in the future
         {
             if (!Instance.GridState.ContainsKey(new Vector2Int(i, height))) return false;
         }

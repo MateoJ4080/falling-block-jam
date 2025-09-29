@@ -162,21 +162,21 @@ public class GameManager : MonoBehaviour
 
     public void ClearLines(List<int> heights)
     {
-        for (int x = 0; x < 10; x++)
+        foreach (int height in heights)
         {
-            foreach (int height in heights)
+            for (int x = 0; x < 10; x++)
             {
                 if (Instance.GridState.TryGetValue(new Vector2Int(x, height), out var block))
                 {
+                    Debug.Log($"Destroying block in ({x}, {height})");
                     Destroy(block.gameObject);
                     Instance.GridState.Remove(new Vector2Int(x, height));
                 }
             }
+            OnLineCleared.Invoke(10);
         }
 
         if (AudioManager.Instance != null) AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxClearLine);
-
-        OnLineCleared.Invoke(10);
 
         DropLinesAbove(heights);
     }

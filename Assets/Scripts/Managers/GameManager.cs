@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     public float TileSize { get; private set; }
     public bool IsGameOver { get; set; }
     private PlayerControls controls;
+    private bool hasUsedHoldThisTurn;
 
     // Events
     public event Action<int> OnLineCleared;
@@ -73,6 +74,8 @@ public class GameManager : MonoBehaviour
     public void SpawnNewTetromino()
     {
         if (NextTetromino == null) Debug.Log("NextTetromino is null");
+
+        hasUsedHoldThisTurn = false;
         spawner.SpawnTetromino(NextTetromino);
         SetNextTetromino();
     }
@@ -236,6 +239,7 @@ public class GameManager : MonoBehaviour
 
     public void SetHoldTetromino(GameObject active)
     {
+        if (hasUsedHoldThisTurn) return;
 
         if (HoldTetromino == null)
         {
@@ -247,6 +251,8 @@ public class GameManager : MonoBehaviour
             Destroy(HoldTetromino.GetComponent<Tetromino>());
             Destroy(active);
             SpawnNewTetromino();
+
+            hasUsedHoldThisTurn = true;
         }
         else
         {
@@ -266,6 +272,8 @@ public class GameManager : MonoBehaviour
             // Switch Hold to Actve
             ActiveTetromino = Instantiate(tempHold, GetSpawnPosition(tempHold), Quaternion.identity);
             ActiveTetromino.AddComponent<Tetromino>();
+
+            hasUsedHoldThisTurn = true;
         }
 
         // OnHoldTetrominoChanged?.Invoke();

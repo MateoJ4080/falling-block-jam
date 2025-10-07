@@ -125,6 +125,10 @@ public class Tetromino : MonoBehaviour
         {
             transform.Rotate(0, 0, angle);
 
+            // Invert scale to make the tetromino match the grid in case the the tiles aren't exactly 1x1 in size
+            Vector2 previousScale = transform.localScale;
+            transform.localScale = new(previousScale.y, previousScale.x, 1);
+
             foreach (Transform block in transform)
             {
                 block.Rotate(0, 0, -angle);

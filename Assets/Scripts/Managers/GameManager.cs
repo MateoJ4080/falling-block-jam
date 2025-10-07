@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public GameObject NextTetromino { get; set; }
     public GameObject HoldTetromino { get; set; }
 
-    public float TileSize { get; private set; }
+    public Vector2 TileSize { get; private set; }
     public bool IsGameOver { get; set; }
     private PlayerControls controls;
     private bool hasUsedHoldThisTurn;
@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
 
         float tileWidth = gridSr.size.x / 10f * gridSr.transform.localScale.x;
         float tileHeight = gridSr.size.y / 20f * gridSr.transform.localScale.y;
-        TileSize = Mathf.Min(tileWidth, tileHeight);
+        TileSize = new(tileWidth, tileHeight);
         GridBottomLeft = (Vector2)gridSr.transform.position - new Vector2(gridSr.size.x * gridSr.transform.localScale.x / 2f, gridSr.size.y * gridSr.transform.localScale.y / 2f);
         controls = new PlayerControls();
 
@@ -86,7 +86,7 @@ public class GameManager : MonoBehaviour
         {
             case "I_Tetromino":
             case "O_Tetromino":
-                offsetY = TileSize;
+                offsetY = TileSize.y;
                 offsetX = 0;
                 break;
 
@@ -95,13 +95,13 @@ public class GameManager : MonoBehaviour
             case "Z_Tetromino":
             case "J_Tetromino":
             case "L_Tetromino":
-                offsetY = TileSize;
-                offsetX = TileSize;
+                offsetY = TileSize.y;
+                offsetX = TileSize.x;
                 break;
 
             default:
                 Debug.LogWarning("Spawning with default offset");
-                offsetY = TileSize;
+                offsetY = TileSize.y;
                 offsetX = 0f;
                 break;
         }
@@ -130,8 +130,8 @@ public class GameManager : MonoBehaviour
 
     public Vector2Int WorldToGrid(Vector2 worldPos)
     {
-        float relativeX = (worldPos.x - GridBottomLeft.x) / TileSize;
-        float relativeY = (worldPos.y - GridBottomLeft.y) / TileSize;
+        float relativeX = (worldPos.x - GridBottomLeft.x) / TileSize.x;
+        float relativeY = (worldPos.y - GridBottomLeft.y) / TileSize.y;
 
         int gridX = Mathf.FloorToInt(relativeX);
         int gridY = Mathf.FloorToInt(relativeY);
@@ -141,8 +141,8 @@ public class GameManager : MonoBehaviour
 
     public Vector2 GridToWorld(Vector2Int gridPos)
     {
-        float worldX = GridBottomLeft.x + (gridPos.x * TileSize) + (TileSize / 2f);
-        float worldY = GridBottomLeft.y + (gridPos.y * TileSize) + (TileSize / 2f);
+        float worldX = GridBottomLeft.x + (gridPos.x * TileSize.x) + (TileSize.x / 2f);
+        float worldY = GridBottomLeft.y + (gridPos.y * TileSize.y) + (TileSize.y / 2f);
 
         return new Vector2(worldX, worldY);
     }

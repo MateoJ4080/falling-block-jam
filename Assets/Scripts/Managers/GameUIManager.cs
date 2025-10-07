@@ -80,7 +80,7 @@ public class GameUIManager : MonoBehaviour
 
     private Vector3 GetUIPivotOffset(GameObject tetromino)
     {
-        float TileSize = GameManager.Instance.TileSize;
+        Vector2 TileSize = GameManager.Instance.TileSize;
         float offsetX;
         float offsetY;
 
@@ -91,7 +91,7 @@ public class GameUIManager : MonoBehaviour
         {
             case "I_Tetromino":
                 offsetX = 0;
-                offsetY = TileSize / 2;
+                offsetY = TileSize.y / 2;
                 break;
 
             case "T_Tetromino":
@@ -99,7 +99,7 @@ public class GameUIManager : MonoBehaviour
             case "Z_Tetromino":
             case "J_Tetromino":
             case "L_Tetromino":
-                offsetX = TileSize / 2;
+                offsetX = TileSize.x / 2;
                 offsetY = 0;
                 break;
 

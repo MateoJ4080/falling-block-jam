@@ -53,7 +53,7 @@ public class Tetromino : MonoBehaviour
         {
             if (CanFall())
             {
-                transform.position += Vector3.down * GameManager.Instance.TileSize;
+                transform.position += Vector3.down * GameManager.Instance.TileSize.y;
                 lastUpdateTime = Time.time;
             }
             else
@@ -104,16 +104,16 @@ public class Tetromino : MonoBehaviour
                 switch (result)
                 {
                     case BoundCheckResult.OutLeft:
-                        transform.position += Vector3.right * GameManager.Instance.TileSize;
+                        transform.position += Vector3.right * GameManager.Instance.TileSize.x;
                         break;
                     case BoundCheckResult.OutRight:
-                        transform.position += Vector3.left * GameManager.Instance.TileSize;
+                        transform.position += Vector3.left * GameManager.Instance.TileSize.x;
                         break;
                     case BoundCheckResult.OutBottom:
-                        transform.position += Vector3.up * GameManager.Instance.TileSize;
+                        transform.position += Vector3.up * GameManager.Instance.TileSize.y;
                         break;
                     case BoundCheckResult.OutTop:
-                        transform.position += Vector3.down * GameManager.Instance.TileSize;
+                        transform.position += Vector3.down * GameManager.Instance.TileSize.y;
                         break;
                 }
                 break;
@@ -160,7 +160,7 @@ public class Tetromino : MonoBehaviour
         foreach (Transform block in transform)
         {
             // Check if it's at the grid bottom or square below is occupied
-            Vector2 worldPos = (Vector2)block.position - new Vector2(0, GameManager.Instance.TileSize);
+            Vector2 worldPos = (Vector2)block.position - new Vector2(0, GameManager.Instance.TileSize.y);
             Vector2Int gridPos = GameManager.Instance.WorldToGrid(worldPos);
 
             if (!GameManager.Instance.IsValidPosition(gridPos))

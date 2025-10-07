@@ -14,11 +14,22 @@ public class UIManager : MonoBehaviour
     public GameObject optionsPanel;
 
     [Header("Audio")]
+    [SerializeField] private Slider musicSlider;
+    [SerializeField] private Slider sfxSlider;
     public AudioSource audioSource;
     public AudioClip buttonClickSound;
 
     void Start()
     {
+        if (AudioManager.Instance != null)
+        {
+            musicSlider.onValueChanged.RemoveAllListeners();
+            sfxSlider.onValueChanged.RemoveAllListeners();
+
+            musicSlider.onValueChanged.AddListener(AudioManager.Instance.SetMusicVolume);
+            sfxSlider.onValueChanged.AddListener(AudioManager.Instance.SetSfxVolume);
+        }
+
         if (AudioManager.Instance.musicMainMenu != null) AudioManager.Instance.PlayMusic(AudioManager.Instance.musicMainMenu);
 
         ShowMainMenu();

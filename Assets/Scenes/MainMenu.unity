@@ -972,7 +972,7 @@ GameObject:
   - component: {fileID: 643359864}
   - component: {fileID: 643359865}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: SFX Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1224,7 +1224,7 @@ GameObject:
   - component: {fileID: 1009422742}
   - component: {fileID: 1009422743}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: Music Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1353,6 +1353,8 @@ MonoBehaviour:
   optionsBackButton: {fileID: 1378546923}
   mainMenuPanel: {fileID: 1388573207}
   optionsPanel: {fileID: 1689844662}
+  musicSlider: {fileID: 1009422743}
+  sfxSlider: {fileID: 643359865}
   audioSource: {fileID: 1061676502}
   buttonClickSound: {fileID: 8300000, guid: a1d03d59a5886a94bbe14c02e701a172, type: 3}
 --- !u!114 &1061676498
@@ -2424,7 +2426,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a21a8d40cdd5ce4898a25b673e4ea5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mixer: {fileID: 24100000, guid: e1d6f6651e74bcf4aa5997c4e86aee25, type: 2}
   musicSource: {fileID: 1524133995}
   sfxSource: {fileID: 1524133994}
   musicMainMenu: {fileID: 8300000, guid: a490c1445703aa643bbaed34378822f3, type: 3}

@@ -2,10 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.Android.Gradle;
-using Unity.Mathematics;
-using Unity.VisualScripting;
-using UnityEditor.U2D.Aseprite;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 

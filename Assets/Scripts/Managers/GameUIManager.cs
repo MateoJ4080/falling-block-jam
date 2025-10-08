@@ -60,9 +60,9 @@ public class GameUIManager : MonoBehaviour
 
         uiNext = Instantiate(nextPrefab, nextContainer.transform);
         uiNext.transform.localPosition = Vector3.zero - GetUIPivotOffset(nextPrefab);
-        uiNext.transform.rotation = Quaternion.Euler(-16.271f, 27.549f, -13.73f);
-        uiNext.transform.localScale = Vector3.one * 0.36f;
-        if (nextPrefab.name == "I_Tetromino") uiNext.transform.localScale = Vector3.one * 0.3f; // Less scale because this tetromino is wider
+        uiNext.transform.rotation = Quaternion.Euler(-19.53f, 27.549f, -13.73f);
+        uiNext.transform.localScale = Vector3.one * 0.48f;
+        if (nextPrefab.name == "I_Tetromino") uiNext.transform.localScale = Vector3.one * 0.377f; // Less scale because this tetromino is wider
 
         Destroy(uiNext.GetComponent<Tetromino>());
     }
@@ -72,9 +72,9 @@ public class GameUIManager : MonoBehaviour
         GameObject uiHold = holdTetromino;
 
         uiHold.transform.localPosition = Vector3.zero - GetUIPivotOffset(uiHold);
-        uiHold.transform.rotation = Quaternion.Euler(-19.53f, -17.69f, 11.454f);
-        uiHold.transform.localScale = Vector3.one * 0.36f;
-        if (uiHold.name.StartsWith("I_Tetromino")) uiHold.transform.localScale = Vector3.one * 0.3f; // Less scale because this tetromino is wider
+        uiHold.transform.rotation = Quaternion.Euler(-19.53f, -27.549f, 13.73f);
+        uiHold.transform.localScale = Vector3.one * 0.48f;
+        if (uiHold.name.StartsWith("I_Tetromino")) uiHold.transform.localScale = Vector3.one * 0.377f; // Less scale because this tetromino is wider
 
     }
 
@@ -91,7 +91,7 @@ public class GameUIManager : MonoBehaviour
         {
             case "I_Tetromino":
                 offsetX = 0;
-                offsetY = TileSize.y / 2;
+                offsetY = 0.2f;
                 break;
 
             case "T_Tetromino":
@@ -99,7 +99,7 @@ public class GameUIManager : MonoBehaviour
             case "Z_Tetromino":
             case "J_Tetromino":
             case "L_Tetromino":
-                offsetX = TileSize.x / 2;
+                offsetX = 0.2f;
                 offsetY = 0;
                 break;
 

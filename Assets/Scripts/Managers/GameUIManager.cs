@@ -80,12 +80,10 @@ public class GameUIManager : MonoBehaviour
 
     private Vector3 GetUIPivotOffset(GameObject tetromino)
     {
-        Vector2 TileSize = GameManager.Instance.TileSize;
         float offsetX;
         float offsetY;
 
         string tetrominoName = tetromino.name.Replace("(Clone)", "").Trim();
-
 
         switch (tetrominoName)
         {

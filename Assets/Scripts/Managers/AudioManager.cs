@@ -18,12 +18,18 @@ public class AudioManager : MonoBehaviour
     public AudioClip sfxMove;
     public AudioClip sfxGameOver;
 
-    private void Awake()
+    void Awake()
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
 
         DontDestroyOnLoad(gameObject);
+    }
+
+    void Start()
+    {
+        SetMusicVolume(0.5f);
+        SetSfxVolume(0.5f);
     }
 
     public void PlayMusic(AudioClip clip)
@@ -40,13 +46,12 @@ public class AudioManager : MonoBehaviour
     // Assigned to slider in the inspector
     public void SetMusicVolume(float value)
     {
-        musicSource.volume = value * 0.05f;
-
+        musicSource.volume = value * 0.5f;
     }
 
     // Assigned to slider in the inspector
     public void SetSfxVolume(float value)
     {
-        sfxSource.volume = value * 0.05f;
+        sfxSource.volume = value * 0.5f;
     }
 }

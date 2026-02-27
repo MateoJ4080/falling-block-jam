@@ -16,8 +16,6 @@ public class UIManager : MonoBehaviour
     [Header("Audio")]
     [SerializeField] private Slider musicSlider;
     [SerializeField] private Slider sfxSlider;
-    public AudioSource audioSource;
-    public AudioClip buttonClickSound;
 
     void Start()
     {
@@ -50,10 +48,5 @@ public class UIManager : MonoBehaviour
     {
         mainMenuPanel.SetActive(true);
         optionsPanel.SetActive(false);
-    }
-
-    public void PlayClickSound()
-    {
-        audioSource.PlayOneShot(buttonClickSound);
     }
 }

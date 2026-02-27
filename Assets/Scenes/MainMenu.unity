@@ -1517,7 +1517,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -2263,10 +2263,10 @@ MonoBehaviour:
   sfxSource: {fileID: 570105539}
   musicMainMenu: {fileID: 8300000, guid: a490c1445703aa643bbaed34378822f3, type: 3}
   musicGameplay: {fileID: 8300000, guid: a7397d20155b80c40ac6a5836578f7ca, type: 3}
-  sfxRotate: {fileID: 8300000, guid: 278d82654352ef04d8f588fb254e81a2, type: 3}
-  sfxClearLine: {fileID: 8300000, guid: adfb729208098bc47af0b8289e73914e, type: 3}
-  sfxMove: {fileID: 8300000, guid: 6d67cb6f037ff1d43bbd8ab4f2f48131, type: 3}
-  sfxGameOver: {fileID: 8300000, guid: 56666839ce0413d4f8163b7a4046ee1b, type: 3}
+  sfxRotate: {fileID: 8300000, guid: ef1b493250a58ee4bb3c2a850fa506fc, type: 3}
+  sfxClearLine: {fileID: 8300000, guid: 1f4d3dda7c7fa3b43959a1950e53b0ba, type: 3}
+  sfxMove: {fileID: 8300000, guid: 05ebcf1ba6d4786498c33f2d4729677f, type: 3}
+  sfxGameOver: {fileID: 8300000, guid: 8481571c12e87f24a910d7210f01bb19, type: 3}
 --- !u!4 &1524133997
 Transform:
   m_ObjectHideFlags: 0

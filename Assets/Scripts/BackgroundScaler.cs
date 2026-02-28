@@ -4,13 +4,15 @@ public class BackgroundScaler : MonoBehaviour
 {
     void Start()
     {
-        var sr = GetComponent<SpriteRenderer>();
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
 
         float worldHeight = Camera.main.orthographicSize * 2f;
         float worldWidth = worldHeight * Screen.width / Screen.height;
 
-        float scaleX = worldWidth / sr.bounds.size.x;
-        float scaleY = worldHeight / sr.bounds.size.y;
+        Vector2 spriteSize = sr.sprite.bounds.size;
+
+        float scaleX = worldWidth / spriteSize.x;
+        float scaleY = worldHeight / spriteSize.y;
 
         float scale = Mathf.Max(scaleX, scaleY);
 

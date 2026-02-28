@@ -21,7 +21,6 @@ public class GameManager : MonoBehaviour
     // Events
     public event Action<int> OnLineCleared;
     public event Action OnNextTetrominoChanged;
-    public event Action OnHoldTetrominoChanged;
 
     // Grid
     [SerializeField] private SpriteRenderer gridSr;
@@ -34,6 +33,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TetrominoSpawner spawner;
     [SerializeField] private float fallSpeed = 1f;
     public float FallSpeed => fallSpeed;
+
+    // Buttons for mobile
+    [SerializeField] private MoveButton moveButtonLeft;
+    [SerializeField] private MoveButton moveButtonRight;
+    [SerializeField] private MoveButton moveButtonDown1;
+    [SerializeField] private MoveButton moveButtonDown2;
 
     private void Awake()
     {
@@ -75,6 +80,17 @@ public class GameManager : MonoBehaviour
         hasUsedHoldThisTurn = false;
         spawner.SpawnTetromino(NextTetromino);
         SetNextTetromino();
+
+        if (moveButtonLeft != null) moveButtonLeft.tetromino = ActiveTetromino.GetComponent<Tetromino>();
+        if (moveButtonRight != null) moveButtonRight.tetromino = ActiveTetromino.GetComponent<Tetromino>();
+        if (moveButtonDown1 != null) moveButtonDown1.tetromino = ActiveTetromino.GetComponent<Tetromino>();
+        if (moveButtonDown2 != null) moveButtonDown2.tetromino = ActiveTetromino.GetComponent<Tetromino>();
+    }
+
+    public void RotateCurrent(int angle)
+    {
+        if (ActiveTetromino != null)
+            ActiveTetromino.GetComponent<Tetromino>().Rotate(angle);
     }
 
     public Vector3 GetSpawnPosition(GameObject prefab)

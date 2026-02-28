@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 public class Tetromino : MonoBehaviour
@@ -6,6 +7,8 @@ public class Tetromino : MonoBehaviour
     private float lastUpdateTime;
     private float lastMoveTime;
     private bool _isLocked;
+    private bool isMoving;
+    private float moveDelay = 0.1f;
 
     enum BoundCheckResult
     {
@@ -63,9 +66,32 @@ public class Tetromino : MonoBehaviour
         }
     }
 
+    public void Move(Vector2 direction)
+    {
+        Debug.Log("Move");
+        if (_isLocked) return;
+        if (CanMoveTo(direction))
+            transform.position += (Vector3)(direction * GameManager.Instance.TileSize);
+    }
+
+    public void StartMove(Vector2 direction)
+    {
+        if (_isLocked) return;
+        Debug.Log("StartMove");
+        if (!isMoving)
+            StartCoroutine(MoveWhileHeld(direction));
+    }
+
+    public void StopMove()
+    {
+        Debug.Log("StopMove");
+        isMoving = false;
+    }
+
     public void HandleMove()
     {
         if (_isLocked) return;
+        Debug.Log("HandleMove");
 
         Vector2 input = controls.Piece.Move.ReadValue<Vector2>();
         Vector2 direction = Vector2.zero;
@@ -81,6 +107,22 @@ public class Tetromino : MonoBehaviour
                 AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxMove);
             }
             lastMoveTime = Time.time;
+        }
+    }
+
+    private IEnumerator MoveWhileHeld(Vector2 direction)
+    {
+        isMoving = true;
+        while (isMoving)
+        {
+            if (CanMoveTo(direction))
+            {
+                Debug.Log("MoveWhileHeld");
+                transform.position += (Vector3)(direction * GameManager.Instance.TileSize);
+                if (AudioManager.Instance != null)
+                    AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxMove);
+            }
+            yield return new WaitForSeconds(moveDelay);
         }
     }
 
@@ -187,7 +229,6 @@ public class Tetromino : MonoBehaviour
         }
         return true;
     }
-
 
     private void LockTetromino()
     {

@@ -785,12 +785,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1060419572}
   m_Layer: 5
-  m_Name: MobileControls
+  m_Name: MobileControlsPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1060419572
 RectTransform:
   m_ObjectHideFlags: 0
@@ -871,6 +871,7 @@ MonoBehaviour:
   nextContainer: {fileID: 1630885121}
   holdContainer: {fileID: 45595589}
   spawner: {fileID: 1608955762}
+  mobileControlsPanel: {fileID: 1060419571}
 --- !u!1 &1247727658
 GameObject:
   m_ObjectHideFlags: 0

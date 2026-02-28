@@ -1,17 +1,18 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 public class UIManager : MonoBehaviour
 {
     [Header("Main Menu Buttons")]
-    public Button playButton;
-    public Button optionsButton;
-    public Button optionsBackButton;
+    [SerializeField] private Button playButton;
+    [SerializeField] private Button optionsButton;
+    [SerializeField] private Button optionsBackButton;
 
     [Header("Panels")]
-    public GameObject mainMenuPanel;
-    public GameObject optionsPanel;
+    [SerializeField] private GameObject mainMenuPanel;
+    [SerializeField] private GameObject optionsPanel;
 
     [Header("Audio")]
     [SerializeField] private Slider musicSlider;

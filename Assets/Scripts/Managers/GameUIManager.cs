@@ -15,6 +15,7 @@ public class GameUIManager : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private TetrominoSpawner spawner;
+    [SerializeField] private GameObject mobileControlsPanel;
 
     private int score;
     private GameObject uiNext;
@@ -27,6 +28,15 @@ public class GameUIManager : MonoBehaviour
 
     void Start()
     {
+        if (Application.isMobilePlatform)
+        {
+            mobileControlsPanel.SetActive(true);
+        }
+        else
+        {
+            mobileControlsPanel.SetActive(false);
+        }
+
         GameManager.Instance.OnLineCleared += AddScore;
         TimeManager.OnTimeChanged += UpdateTimeText;
         GameManager.Instance.OnNextTetrominoChanged += UpdateNextTetrominoUI;

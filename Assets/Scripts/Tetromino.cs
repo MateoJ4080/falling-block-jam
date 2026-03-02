@@ -87,6 +87,8 @@ public class Tetromino : MonoBehaviour
 
     public void HandleMove()
     {
+        if (Application.isMobilePlatform || GameUIManager.Instance.IsMobileControlsPanelActive) return;
+
         if (_isLocked) return;
 
         Vector2 input = controls.Piece.Move.ReadValue<Vector2>();
@@ -109,7 +111,7 @@ public class Tetromino : MonoBehaviour
     private IEnumerator MoveWhileHeld(Vector2 direction)
     {
         isMoving = true;
-        while (isMoving)
+        while (isMoving && !_isLocked)
         {
             if (CanMoveTo(direction))
             {
@@ -228,6 +230,7 @@ public class Tetromino : MonoBehaviour
     private void LockTetromino()
     {
         Debug.Log($"LockTetromino by {gameObject.name}");
+        isMoving = false;
         _isLocked = true;
 
         List<int> completedHeights = new();

@@ -17,6 +17,11 @@ public class GameUIManager : MonoBehaviour
     [Header("References")]
     [SerializeField] private TetrominoSpawner spawner;
     [SerializeField] private GameObject mobileControlsPanel;
+    public bool IsMobileControlsPanelActive
+    {
+        get => mobileControlsPanel.activeSelf;
+        set => mobileControlsPanel.SetActive(value);
+    }
 
     private int score;
     private GameObject uiNext;

@@ -289,6 +289,10 @@ public class GameManager : MonoBehaviour
             ActiveTetromino.transform.localScale = Vector3.one * TileSize;
             ActiveTetromino.AddComponent<Tetromino>();
 
+            if (moveButtonLeft != null) moveButtonLeft.tetromino = ActiveTetromino.GetComponent<Tetromino>();
+            if (moveButtonRight != null) moveButtonRight.tetromino = ActiveTetromino.GetComponent<Tetromino>();
+            if (moveButtonDown1 != null) moveButtonDown1.tetromino = ActiveTetromino.GetComponent<Tetromino>();
+            if (moveButtonDown2 != null) moveButtonDown2.tetromino = ActiveTetromino.GetComponent<Tetromino>();
 
             hasUsedHoldThisTurn = true;
         }

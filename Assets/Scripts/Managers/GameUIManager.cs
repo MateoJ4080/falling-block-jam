@@ -126,7 +126,7 @@ public class GameUIManager : MonoBehaviour
         return new(offsetX, offsetY);
     }
 
-    public void BackToMenu()
+    public void ReturnToMenu()
     {
         SceneManager.LoadScene(0);
     }

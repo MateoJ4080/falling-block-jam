@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
     {
         SpawnNewTetromino();
 
-        controls.Piece.SetHold.performed += ctx => SetHoldTetromino(ActiveTetromino);
+        controls.Piece.SetHold.performed += ctx => SetHoldTetromino();
     }
 
     private void OnEnable()
@@ -249,8 +249,9 @@ public class GameManager : MonoBehaviour
         OnNextTetrominoChanged?.Invoke();
     }
 
-    public void SetHoldTetromino(GameObject active)
+    public void SetHoldTetromino()
     {
+        GameObject active = ActiveTetromino;
         if (hasUsedHoldThisTurn) return;
 
         if (HoldTetromino == null)

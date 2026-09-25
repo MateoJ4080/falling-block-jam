@@ -237,7 +237,7 @@ public class GameManager : MonoBehaviour
                 AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxGameOver);
 
                 yield return new WaitForSeconds(AudioManager.Instance.sfxGameOver.length);
-                SceneManager.LoadScene("MainMenu");
+                SceneManager.LoadScene("Menu");
                 yield break;
             }
         }

@@ -10,7 +10,7 @@ public class Tetromino : MonoBehaviour
     private bool isMoving;
     private float moveDelay = 0.1f;
 
-    enum BoundCheckResult
+    private enum BoundCheckResult
     {
         Inside,
         OutLeft,
@@ -177,7 +177,7 @@ public class Tetromino : MonoBehaviour
         }
     }
 
-    BoundCheckResult CheckBlockAfterRotation(Transform block, Transform parent, float angle)
+    private BoundCheckResult CheckBlockAfterRotation(Transform block, Transform parent, float angle)
     {
         Vector3 dir = block.position - parent.position;
         dir = Quaternion.Euler(0, 0, angle) * dir;

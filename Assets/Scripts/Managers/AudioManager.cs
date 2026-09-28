@@ -18,7 +18,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip sfxMove;
     public AudioClip sfxGameOver;
 
-    void Awake()
+    private void Awake()
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
@@ -26,7 +26,7 @@ public class AudioManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    void Start()
+    private void Start()
     {
         SetMusicVolume(0.5f);
         SetSfxVolume(0.5f);

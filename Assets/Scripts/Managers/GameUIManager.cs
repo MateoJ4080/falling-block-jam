@@ -32,7 +32,7 @@ public class GameUIManager : MonoBehaviour
         else Destroy(gameObject);
     }
 
-    void Start()
+    private void Start()
     {
         if (Application.isMobilePlatform)
         {
@@ -48,7 +48,7 @@ public class GameUIManager : MonoBehaviour
         GameManager.Instance.OnNextTetrominoChanged += UpdateNextTetrominoUI;
     }
 
-    void OnDisable()
+    private void OnDisable()
     {
         GameManager.Instance.OnLineCleared -= AddScore;
         TimeManager.OnTimeChanged -= UpdateTimeText;

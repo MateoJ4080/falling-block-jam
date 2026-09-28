@@ -7,7 +7,7 @@ public class DebugManager : MonoBehaviour
 
     [SerializeField] public bool DebugMode;
 
-    void Awake()
+    private void Awake()
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);

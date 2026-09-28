@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
         SetNextTetromino();
     }
 
-    void Start()
+    private void Start()
     {
         SpawnNewTetromino();
 

@@ -126,8 +126,9 @@ public class GameUIManager : MonoBehaviour
         return new(offsetX, offsetY);
     }
 
-    public void ReturnToMenu()
+    public void OnMenuButtonPressed()
     {
+        AudioManager.Instance.PlayButtonSFX();
         SceneManager.LoadScene(0);
     }
 }

@@ -49,4 +49,6 @@ public class UIManager : MonoBehaviour
         mainMenuPanel.SetActive(true);
         optionsPanel.SetActive(false);
     }
+
+    public void Leave() => Application.Quit();
 }

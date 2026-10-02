@@ -44,6 +44,11 @@ public class AudioManager : MonoBehaviour
         SfxSource.PlayOneShot(clip);
     }
 
+    public void PlayButtonSFX()
+    {
+        SfxSource.PlayOneShot(SfxButtonClick);
+    }
+
     // Assigned to slider in the inspector
     public void SetMusicVolume(float value)
     {

@@ -5,18 +5,19 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance { get; set; }
 
     [Header("Audio Sources")]
-    public AudioSource musicSource;
-    public AudioSource sfxSource;
+    public AudioSource MusicSource;
+    public AudioSource SfxSource;
 
     [Header("Music")]
-    public AudioClip musicMainMenu;
-    public AudioClip musicGameplay;
+    public AudioClip MusicMainMenu;
+    public AudioClip MusicGameplay;
 
     [Header("Sound Effects")]
-    public AudioClip sfxRotate;
-    public AudioClip sfxClearLine;
-    public AudioClip sfxMove;
-    public AudioClip sfxGameOver;
+    public AudioClip SfxRotate;
+    public AudioClip SfxClearLine;
+    public AudioClip SfxMove;
+    public AudioClip SfxGameOver;
+    public AudioClip SfxButtonClick;
 
     private void Awake()
     {
@@ -34,24 +35,24 @@ public class AudioManager : MonoBehaviour
 
     public void PlayMusic(AudioClip clip)
     {
-        musicSource.clip = clip;
-        musicSource.Play();
+        MusicSource.clip = clip;
+        MusicSource.Play();
     }
 
     public void PlaySFX(AudioClip clip)
     {
-        sfxSource.PlayOneShot(clip);
+        SfxSource.PlayOneShot(clip);
     }
 
     // Assigned to slider in the inspector
     public void SetMusicVolume(float value)
     {
-        musicSource.volume = value * 0.5f;
+        MusicSource.volume = value * 0.5f;
     }
 
     // Assigned to slider in the inspector
     public void SetSfxVolume(float value)
     {
-        sfxSource.volume = value * 0.5f;
+        SfxSource.volume = value * 0.5f;
     }
 }

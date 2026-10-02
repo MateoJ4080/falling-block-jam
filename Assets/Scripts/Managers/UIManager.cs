@@ -28,7 +28,7 @@ public class UIManager : MonoBehaviour
             sfxSlider.onValueChanged.AddListener(AudioManager.Instance.SetSfxVolume);
         }
 
-        if (AudioManager.Instance.musicMainMenu != null) AudioManager.Instance.PlayMusic(AudioManager.Instance.musicMainMenu);
+        if (AudioManager.Instance.MusicMainMenu != null) AudioManager.Instance.PlayMusic(AudioManager.Instance.MusicMainMenu);
 
         ShowMainMenu();
     }

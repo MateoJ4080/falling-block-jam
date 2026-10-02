@@ -102,7 +102,7 @@ public class Tetromino : MonoBehaviour
             if (CanMoveTo(direction))
             {
                 transform.position += (Vector3)(direction * GameManager.Instance.TileSize);
-                AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxMove);
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.SfxMove);
             }
             lastMoveTime = Time.time;
         }
@@ -117,7 +117,7 @@ public class Tetromino : MonoBehaviour
             {
                 transform.position += (Vector3)(direction * GameManager.Instance.TileSize);
                 if (AudioManager.Instance != null)
-                    AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxMove);
+                    AudioManager.Instance.PlaySFX(AudioManager.Instance.SfxMove);
             }
             yield return new WaitForSeconds(moveDelay);
         }
@@ -173,7 +173,7 @@ public class Tetromino : MonoBehaviour
                 block.Rotate(0, 0, -angle);
             }
 
-            if (AudioManager.Instance != null) AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxRotate);
+            if (AudioManager.Instance != null) AudioManager.Instance.PlaySFX(AudioManager.Instance.SfxRotate);
         }
     }
 

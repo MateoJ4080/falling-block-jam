@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
         GridBottomLeft = (Vector2)gridSr.transform.position - new Vector2(gridSr.size.x * gridSr.transform.localScale.x / 2f, gridSr.size.y * gridSr.transform.localScale.y / 2f);
         controls = new PlayerControls();
 
-        AudioManager.Instance.PlayMusic(AudioManager.Instance.musicGameplay);
+        AudioManager.Instance.PlayMusic(AudioManager.Instance.MusicGameplay);
 
         SetNextTetromino();
     }
@@ -192,7 +192,7 @@ public class GameManager : MonoBehaviour
             OnLineCleared.Invoke(10);
         }
 
-        if (AudioManager.Instance != null) AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxClearLine);
+        if (AudioManager.Instance != null) AudioManager.Instance.PlaySFX(AudioManager.Instance.SfxClearLine);
 
         DropLinesAbove(heights);
     }
@@ -233,10 +233,10 @@ public class GameManager : MonoBehaviour
             {
                 Instance.IsGameOver = true;
 
-                AudioManager.Instance.musicSource.Stop();
-                AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxGameOver);
+                AudioManager.Instance.MusicSource.Stop();
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.SfxGameOver);
 
-                yield return new WaitForSeconds(AudioManager.Instance.sfxGameOver.length);
+                yield return new WaitForSeconds(AudioManager.Instance.SfxGameOver.length);
                 SceneManager.LoadScene("Menu");
                 yield break;
             }

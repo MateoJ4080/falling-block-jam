@@ -1,0 +1,834 @@
+fileFormatVersion: 2
+guid: ae71d70d0673a8a49a92fa5204eec6e0
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5028275153416373604
+    second: pixellab-Give-me-a-collection-of-rounde-1791028579370_0
+  - first:
+      213: 563542658623208911
+    second: pixellab-Give-me-a-collection-of-rounde-1791028579370_1
+  - first:
+      213: 6413174737672856109
+    second: pixellab-Give-me-a-collection-of-rounde-1791028579370_2
+  - first:
+      213: 1158925562472298521
+    second: pixellab-Give-me-a-collection-of-rounde-1791028579370_3
+  - first:
+      213: 5044389437171033471
+    second: pixellab-Give-me-a-collection-of-rounde-1791028579370_4
+  - first:
+      213: 4369221264538531685
+    second: pixellab-Give-me-a-collection-of-rounde-1791028579370_5
+  - first:
+      213: 1443272170701939411
+    second: pixellab-Give-me-a-collection-of-rounde-1791028579370_6
+  - first:
+      213: -1601554470184526707
+    second: pixellab-Give-me-a-collection-of-rounde-1791028579370_7
+  - first:
+      213: -4071955816192044457
+    second: pixellab-Give-me-a-collection-of-rounde-1791028579370_8
+  - first:
+      213: -6727989832105658470
+    second: pixellab-Give-me-a-collection-of-rounde-1791028579370_9
+  - first:
+      213: -8406083354530047263
+    second: pixellab-Give-me-a-collection-of-rounde-1791028579370_10
+  - first:
+      213: -8007138836116931343
+    second: pixellab-Give-me-a-collection-of-rounde-1791028579370_11
+  - first:
+      213: -5645569687895164
+    second: pixellab-Give-me-a-collection-of-rounde-1791028579370_12
+  - first:
+      213: -5662779973543866113
+    second: pixellab-Give-me-a-collection-of-rounde-1791028579370_13
+  - first:
+      213: -9000083611738260362
+    second: pixellab-Give-me-a-collection-of-rounde-1791028579370_14
+  - first:
+      213: -7905545784700241989
+    second: pixellab-Give-me-a-collection-of-rounde-1791028579370_15
+  - first:
+      213: -8924639035060447157
+    second: pixellab-Give-me-a-collection-of-rounde-1791028579370_16
+  - first:
+      213: -1944564528404883317
+    second: pixellab-Give-me-a-collection-of-rounde-1791028579370_17
+  - first:
+      213: -1359201907202851635
+    second: pixellab-Give-me-a-collection-of-rounde-1791028579370_18
+  - first:
+      213: 9008085513023141890
+    second: pixellab-Give-me-a-collection-of-rounde-1791028579370_19
+  - first:
+      213: 3956989092355665196
+    second: pixellab-Give-me-a-collection-of-rounde-1791028579370_20
+  - first:
+      213: 3798730622936668520
+    second: pixellab-Give-me-a-collection-of-rounde-1791028579370_21
+  - first:
+      213: 3788363503305415368
+    second: pixellab-Give-me-a-collection-of-rounde-1791028579370_22
+  - first:
+      213: -3712720747604049106
+    second: pixellab-Give-me-a-collection-of-rounde-1791028579370_23
+  - first:
+      213: -2795305460925811065
+    second: pixellab-Give-me-a-collection-of-rounde-1791028579370_24
+  - first:
+      213: 1750438956497887934
+    second: pixellab-Give-me-a-collection-of-rounde-1791028579370_25
+  - first:
+      213: -6661522481829023151
+    second: pixellab-Give-me-a-collection-of-rounde-1791028579370_26
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 15
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 512
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: wall-clocks-collection_0
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 144
+        width: 44
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c338209eb48235b47b80e4f4b2554b54
+      internalID: -2119921257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall-clocks-collection_1
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 144
+        width: 44
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 216f83aa35954014784c11938f24e2e1
+      internalID: -567760126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall-clocks-collection_2
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 144
+        width: 41
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c5509f787887ff408e79fe67a0136a4
+      internalID: 650071292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall-clocks-collection_3
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 126
+        width: 37
+        height: 63
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09b02233d98fdd34bab1fc8a4bfd9631
+      internalID: -2047837714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall-clocks-collection_4
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 145
+        width: 45
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b579a5e707cba3444b972283eb3bb06e
+      internalID: 1663540373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall-clocks-collection_5
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 136
+        width: 52
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 487dbaab13059f544a5109b0064351d2
+      internalID: -1192068287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall-clocks-collection_6
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 147
+        width: 41
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 468f4d55a95b65a44a587a37113214af
+      internalID: 2045306491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall-clocks-collection_7
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 96
+        width: 44
+        height: 43
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 126c3c63e5061744492046049ecc82cf
+      internalID: 2102209422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall-clocks-collection_8
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 97
+        width: 45
+        height: 43
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13b87f5f90bdf2549810d706cd3a5db3
+      internalID: -1389224363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall-clocks-collection_9
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 99
+        width: 41
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f3ec3e21624be64490fa704265510cb
+      internalID: 1660817977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall-clocks-collection_10
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 48
+        width: 46
+        height: 70
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ff27997a614c1e4fb95e33ecd9f2b6a
+      internalID: 1867251830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall-clocks-collection_11
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 103
+        width: 24
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae430aee41a26bd41a6915411b06ef5d
+      internalID: -1115712414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall-clocks-collection_12
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 100
+        width: 60
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2dcae0ff5eaa0994892dfbca06394ae4
+      internalID: -1686209601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall-clocks-collection_13
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 98
+        width: 60
+        height: 43
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 146e1aca469895d4e98af1bd08d4b83c
+      internalID: -1558541041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall-clocks-collection_14
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 48
+        width: 43
+        height: 43
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 531b22406bb505640a13e85c0876d010
+      internalID: 1581645503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall-clocks-collection_15
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 48
+        width: 43
+        height: 43
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23c8a28245d40d84ab16cce0fde5618e
+      internalID: 1834660115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall-clocks-collection_16
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 47
+        width: 43
+        height: 46
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8386d02ce091bbe42b484e9ebc1e3525
+      internalID: -2080931657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall-clocks-collection_17
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 49
+        width: 44
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd57533fe1026074bb2d57d5d77d0493
+      internalID: 1951610752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall-clocks-collection_18
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 49
+        width: 43
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9b3457f399ec194f97b263dbff71923
+      internalID: 475609293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall-clocks-collection_19
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 50
+        width: 41
+        height: 43
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4944ac198b64f343b4e0c670434d6f8
+      internalID: 1668577466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall-clocks-collection_20
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 3
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1e63eff2e428bb4c9f33b8c671aaa23
+      internalID: -1730715045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall-clocks-collection_21
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 3
+        width: 50
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7619c2d3c898f36499526e88a528a5e5
+      internalID: 795889392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall-clocks-collection_22
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 3
+        width: 42
+        height: 43
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4705f4edeac9d1a4a88e3db57355bf0c
+      internalID: -1971884641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall-clocks-collection_23
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 4
+        width: 38
+        height: 39
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1695e64dc7f53824b8ed62a034d7366d
+      internalID: 1996727965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall-clocks-collection_24
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 3
+        width: 43
+        height: 43
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d9283dc63f47fb46b5fb69ee8d61364
+      internalID: 1595400355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall-clocks-collection_25
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 4
+        width: 38
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f01f6c4a5ab4a9e40a8e2a23880db79a
+      internalID: -1597114306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall-clocks-collection_26
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 3
+        width: 41
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5f3dba36c28dd4469b97a3431a9902d
+      internalID: -686764871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: a12aa4c4b6581854a936fd9c3567cc62
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      wall-clocks-collection_0: -2119921257
+      wall-clocks-collection_1: -567760126
+      wall-clocks-collection_10: 1867251830
+      wall-clocks-collection_11: -1115712414
+      wall-clocks-collection_12: -1686209601
+      wall-clocks-collection_13: -1558541041
+      wall-clocks-collection_14: 1581645503
+      wall-clocks-collection_15: 1834660115
+      wall-clocks-collection_16: -2080931657
+      wall-clocks-collection_17: 1951610752
+      wall-clocks-collection_18: 475609293
+      wall-clocks-collection_19: 1668577466
+      wall-clocks-collection_2: 650071292
+      wall-clocks-collection_20: -1730715045
+      wall-clocks-collection_21: 795889392
+      wall-clocks-collection_22: -1971884641
+      wall-clocks-collection_23: 1996727965
+      wall-clocks-collection_24: 1595400355
+      wall-clocks-collection_25: -1597114306
+      wall-clocks-collection_26: -686764871
+      wall-clocks-collection_3: -2047837714
+      wall-clocks-collection_4: 1663540373
+      wall-clocks-collection_5: -1192068287
+      wall-clocks-collection_6: 2045306491
+      wall-clocks-collection_7: 2102209422
+      wall-clocks-collection_8: -1389224363
+      wall-clocks-collection_9: 1660817977
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

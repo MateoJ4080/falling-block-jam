@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
 
     public Vector2 TileSize { get; private set; }
     public bool IsGameOver { get; set; }
-    private PlayerControls controls;
+    private PlayerControls _controls;
     private bool _isHoldAvailable;
 
     // Events
@@ -23,33 +23,33 @@ public class GameManager : MonoBehaviour
     public event Action OnNextTetrominoChanged;
 
     // Grid
-    [SerializeField] private SpriteRenderer gridSr;
+    [SerializeField] private SpriteRenderer _gridSr;
     private readonly Dictionary<Vector2Int, Transform> _gridState = new();
     public Dictionary<Vector2Int, Transform> GridState => _gridState;
     public Vector2 GridBottomLeft { get; set; }
 
     // Tetrominoes
-    [SerializeField] private Transform holdContainer;
-    [SerializeField] private TetrominoSpawner spawner;
-    [SerializeField] private float fallSpeed = 1f;
-    public float FallSpeed => fallSpeed;
+    [SerializeField] private Transform _holdContainer;
+    [SerializeField] private TetrominoSpawner _spawner;
+    [SerializeField] private float _fallSpeed = 1f;
+    public float FallSpeed => _fallSpeed;
 
     // Buttons for mobile
-    [SerializeField] private MoveButton moveButtonLeft;
-    [SerializeField] private MoveButton moveButtonRight;
-    [SerializeField] private MoveButton moveButtonDown1;
-    [SerializeField] private MoveButton moveButtonDown2;
+    [SerializeField] private MoveButton _moveButtonLeft;
+    [SerializeField] private MoveButton _moveButtonRight;
+    [SerializeField] private MoveButton _moveButtonDown1;
+    [SerializeField] private MoveButton _moveButtonDown2;
 
     private void Awake()
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
 
-        float tileWidth = gridSr.bounds.size.x / 10f;
-        float tileHeight = gridSr.bounds.size.y / 20f;
+        float tileWidth = _gridSr.bounds.size.x / 10f;
+        float tileHeight = _gridSr.bounds.size.y / 20f;
         TileSize = new(tileWidth, tileHeight);
-        GridBottomLeft = (Vector2)gridSr.transform.position - new Vector2(gridSr.size.x * gridSr.transform.localScale.x / 2f, gridSr.size.y * gridSr.transform.localScale.y / 2f);
-        controls = new PlayerControls();
+        GridBottomLeft = (Vector2)_gridSr.transform.position - new Vector2(_gridSr.size.x * _gridSr.transform.localScale.x / 2f, _gridSr.size.y * _gridSr.transform.localScale.y / 2f);
+        _controls = new PlayerControls();
 
         AudioManager.Instance.PlayMusic(AudioManager.Instance.MusicGameplay);
 
@@ -60,17 +60,17 @@ public class GameManager : MonoBehaviour
     {
         SpawnNewTetromino();
 
-        controls.Piece.SetHold.performed += ctx => SetHoldTetromino();
+        _controls.Piece.SetHold.performed += ctx => SetHoldTetromino();
     }
 
     private void OnEnable()
     {
-        controls.Enable();
+        _controls.Enable();
     }
 
     private void OnDisable()
     {
-        controls.Disable();
+        _controls.Disable();
     }
 
     public void SpawnNewTetromino()
@@ -78,13 +78,13 @@ public class GameManager : MonoBehaviour
         if (NextTetromino == null) Debug.Log("NextTetromino is null");
 
         _isHoldAvailable = true;
-        spawner.SpawnTetromino(NextTetromino);
+        _spawner.SpawnTetromino(NextTetromino);
         SetNextTetromino();
 
-        if (moveButtonLeft != null) moveButtonLeft.tetromino = ActiveTetromino.GetComponent<Tetromino>();
-        if (moveButtonRight != null) moveButtonRight.tetromino = ActiveTetromino.GetComponent<Tetromino>();
-        if (moveButtonDown1 != null) moveButtonDown1.tetromino = ActiveTetromino.GetComponent<Tetromino>();
-        if (moveButtonDown2 != null) moveButtonDown2.tetromino = ActiveTetromino.GetComponent<Tetromino>();
+        if (_moveButtonLeft != null) _moveButtonLeft.tetromino = ActiveTetromino.GetComponent<Tetromino>();
+        if (_moveButtonRight != null) _moveButtonRight.tetromino = ActiveTetromino.GetComponent<Tetromino>();
+        if (_moveButtonDown1 != null) _moveButtonDown1.tetromino = ActiveTetromino.GetComponent<Tetromino>();
+        if (_moveButtonDown2 != null) _moveButtonDown2.tetromino = ActiveTetromino.GetComponent<Tetromino>();
     }
 
     public void RotateCurrent(int angle)
@@ -95,7 +95,7 @@ public class GameManager : MonoBehaviour
 
     public Vector3 GetSpawnPosition()
     {
-        Bounds bounds = gridSr.bounds;
+        Bounds bounds = _gridSr.bounds;
         return new Vector3(bounds.center.x, bounds.max.y, 0f) - Vector3.up * TileSize.y;
     }
 
@@ -215,7 +215,7 @@ public class GameManager : MonoBehaviour
 
     public void SetNextTetromino()
     {
-        NextTetromino = spawner.tetrominos[UnityEngine.Random.Range(0, spawner.tetrominos.Length)];
+        NextTetromino = _spawner.tetrominos[UnityEngine.Random.Range(0, _spawner.tetrominos.Length)];
         OnNextTetrominoChanged?.Invoke();
     }
 
@@ -226,7 +226,7 @@ public class GameManager : MonoBehaviour
 
         if (HoldTetromino == null)
         {
-            HoldTetromino = Instantiate(active, Vector3.zero, Quaternion.identity, holdContainer);
+            HoldTetromino = Instantiate(active, Vector3.zero, Quaternion.identity, _holdContainer);
             HoldTetromino.transform.localPosition = Vector3.zero;
 
             FixBlocksRotation(HoldTetromino);
@@ -248,7 +248,7 @@ public class GameManager : MonoBehaviour
 
             // Switch Active to Hold
             Destroy(tempActive.GetComponent<Tetromino>());
-            HoldTetromino = Instantiate(tempActive, Vector3.zero, Quaternion.identity, holdContainer);
+            HoldTetromino = Instantiate(tempActive, Vector3.zero, Quaternion.identity, _holdContainer);
             HoldTetromino.transform.localPosition = Vector3.zero;
 
             FixBlocksRotation(HoldTetromino);
@@ -259,10 +259,10 @@ public class GameManager : MonoBehaviour
             ActiveTetromino.transform.localScale = Vector3.one * TileSize;
             ActiveTetromino.AddComponent<Tetromino>();
 
-            if (moveButtonLeft != null) moveButtonLeft.tetromino = ActiveTetromino.GetComponent<Tetromino>();
-            if (moveButtonRight != null) moveButtonRight.tetromino = ActiveTetromino.GetComponent<Tetromino>();
-            if (moveButtonDown1 != null) moveButtonDown1.tetromino = ActiveTetromino.GetComponent<Tetromino>();
-            if (moveButtonDown2 != null) moveButtonDown2.tetromino = ActiveTetromino.GetComponent<Tetromino>();
+            if (_moveButtonLeft != null) _moveButtonLeft.tetromino = ActiveTetromino.GetComponent<Tetromino>();
+            if (_moveButtonRight != null) _moveButtonRight.tetromino = ActiveTetromino.GetComponent<Tetromino>();
+            if (_moveButtonDown1 != null) _moveButtonDown1.tetromino = ActiveTetromino.GetComponent<Tetromino>();
+            if (_moveButtonDown2 != null) _moveButtonDown2.tetromino = ActiveTetromino.GetComponent<Tetromino>();
 
             _isHoldAvailable = false;
         }

@@ -45,8 +45,8 @@ public class GameManager : MonoBehaviour
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
 
-        float tileWidth = gridSr.size.x / 10f * gridSr.transform.localScale.x;
-        float tileHeight = gridSr.size.y / 20f * gridSr.transform.localScale.y;
+        float tileWidth = gridSr.bounds.size.x / 10f;
+        float tileHeight = gridSr.bounds.size.y / 20f;
         TileSize = new(tileWidth, tileHeight);
         GridBottomLeft = (Vector2)gridSr.transform.position - new Vector2(gridSr.size.x * gridSr.transform.localScale.x / 2f, gridSr.size.y * gridSr.transform.localScale.y / 2f);
         controls = new PlayerControls();
@@ -98,7 +98,6 @@ public class GameManager : MonoBehaviour
         Bounds bounds = gridSr.bounds;
         return new Vector3(bounds.center.x, bounds.max.y, 0f) - Vector3.up * TileSize.y;
     }
-
 
     public bool IsValidPosition(Vector2Int gridPos)
     {

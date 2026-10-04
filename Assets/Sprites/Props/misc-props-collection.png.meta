@@ -61,7 +61,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -96,7 +96,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -203,78 +203,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: misc-props-collection_3
+      name: misc-props-collection_6
       rect:
         serializedVersion: 2
         x: 14
         y: 5
-        width: 24
-        height: 46
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7027ad239b1519d45b3da459fcb0f0f8
-      internalID: -1625587124
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: misc-props-collection_4
-      rect:
-        serializedVersion: 2
-        x: 43
-        y: 5
-        width: 23
-        height: 46
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 37d96c6d964087d4f8bd09ca499a6dbf
-      internalID: 42801025
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: misc-props-collection_5
-      rect:
-        serializedVersion: 2
-        x: 72
-        y: 5
-        width: 22
-        height: 46
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7ab5115c21e4e314bb9c69b60fb9858f
-      internalID: 351070694
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: misc-props-collection_6
-      rect:
-        serializedVersion: 2
-        x: 99
-        y: 5
-        width: 97
+        width: 182
         height: 46
       alignment: 0
       pivot: {x: 0.5, y: 0.5}

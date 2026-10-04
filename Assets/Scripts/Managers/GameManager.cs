@@ -93,39 +93,10 @@ public class GameManager : MonoBehaviour
             ActiveTetromino.GetComponent<Tetromino>().Rotate(angle);
     }
 
-    public Vector3 GetSpawnPosition(GameObject prefab)
+    public Vector3 GetSpawnPosition()
     {
-        float offsetX;
-        float offsetY;
-
-        switch (prefab.name)
-        {
-            case "I_Tetromino":
-            case "O_Tetromino":
-                offsetY = TileSize.y;
-                offsetX = 0;
-                break;
-
-            case "T_Tetromino":
-            case "S_Tetromino":
-            case "Z_Tetromino":
-            case "J_Tetromino":
-            case "L_Tetromino":
-                offsetY = TileSize.y;
-                offsetX = TileSize.x;
-                break;
-
-            default:
-                Debug.LogWarning("Spawning with default offset");
-                offsetY = TileSize.y;
-                offsetX = 0f;
-                break;
-        }
-
-        Vector3 gridScale = gridSr.transform.localScale;
-        float gridHeight = gridSr.size.y * gridScale.y;
-
-        return gridSr.transform.position + (Vector3.up * (gridHeight / 2f)) - (Vector3.right * offsetX) - (Vector3.up * offsetY);
+        Bounds bounds = gridSr.bounds;
+        return new Vector3(bounds.center.x, bounds.max.y, 0f) - Vector3.up * TileSize.y;
     }
 
 
@@ -285,7 +256,7 @@ public class GameManager : MonoBehaviour
             GameUIManager.Instance.UpdateHoldTetrominoUI(HoldTetromino);
 
             // Switch Hold to Actve
-            ActiveTetromino = Instantiate(tempHold, GetSpawnPosition(tempHold), Quaternion.identity);
+            ActiveTetromino = Instantiate(tempHold, GetSpawnPosition(), Quaternion.identity);
             ActiveTetromino.transform.localScale = Vector3.one * TileSize;
             ActiveTetromino.AddComponent<Tetromino>();
 

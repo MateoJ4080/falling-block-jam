@@ -10,7 +10,7 @@ public class TetrominoSpawner : MonoBehaviour
     {
         if (GameManager.Instance.IsGameOver) return;
 
-        Vector3 spawnPos = GameManager.Instance.GetSpawnPosition(prefab);
+        Vector3 spawnPos = GameManager.Instance.GetSpawnPosition();
 
         GameObject tetromino = Instantiate(prefab, spawnPos, Quaternion.identity);
         tetromino.transform.localScale = Vector3.one * GameManager.Instance.TileSize;

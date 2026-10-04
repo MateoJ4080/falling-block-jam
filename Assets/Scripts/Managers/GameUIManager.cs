@@ -6,25 +6,25 @@ public class GameUIManager : MonoBehaviour
 {
     public static GameUIManager Instance { get; set; }
 
+    private int _score;
+    private GameObject _uiNext;
+
     [Header("Headers")]
-    [SerializeField] private TextMeshPro scoreTMP;
-    [SerializeField] private TextMeshPro timeTMP;
+    [SerializeField] private TextMeshPro _scoreTMP;
+    [SerializeField] private TextMeshPro _timeTMP;
 
     [Header("Containers")]
-    [SerializeField] private GameObject nextContainer;
-    [SerializeField] private GameObject holdContainer;
+    [SerializeField] private GameObject _nextContainer;
+    [SerializeField] private GameObject _holdContainer;
 
     [Header("References")]
-    [SerializeField] private TetrominoSpawner spawner;
-    [SerializeField] private GameObject mobileControlsPanel;
+    [SerializeField] private TetrominoSpawner _spawner;
+    [SerializeField] private GameObject _mobileControlsPanel;
     public bool IsMobileControlsPanelActive
     {
-        get => mobileControlsPanel.activeSelf;
-        set => mobileControlsPanel.SetActive(value);
+        get => _mobileControlsPanel.activeSelf;
+        set => _mobileControlsPanel.SetActive(value);
     }
-
-    private int score;
-    private GameObject uiNext;
 
     private void Awake()
     {
@@ -35,13 +35,9 @@ public class GameUIManager : MonoBehaviour
     private void Start()
     {
         if (Application.isMobilePlatform)
-        {
-            mobileControlsPanel.SetActive(true);
-        }
+            _mobileControlsPanel.SetActive(true);
         else
-        {
-            mobileControlsPanel.SetActive(false);
-        }
+            _mobileControlsPanel.SetActive(false);
 
         GameManager.Instance.OnLineCleared += AddScore;
         TimeManager.OnTimeChanged += UpdateTimeText;
@@ -57,30 +53,30 @@ public class GameUIManager : MonoBehaviour
 
     private void AddScore(int value)
     {
-        score += value;
-        scoreTMP.text = score.ToString("D5");
+        _score += value;
+        _scoreTMP.text = _score.ToString("D5");
     }
 
     private void UpdateTimeText(float value)
     {
         int minutes = Mathf.FloorToInt(value / 60);
         int seconds = Mathf.FloorToInt(value % 60);
-        timeTMP.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        _timeTMP.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
     private void UpdateNextTetrominoUI()
     {
-        if (uiNext != null) Destroy(uiNext);
+        if (_uiNext != null) Destroy(_uiNext);
 
         GameObject nextPrefab = GameManager.Instance.NextTetromino;
 
-        uiNext = Instantiate(nextPrefab, nextContainer.transform);
-        uiNext.transform.localPosition = Vector3.zero - GetUIPivotOffset(nextPrefab);
-        uiNext.transform.rotation = Quaternion.Euler(-19.53f, 27.549f, -13.73f);
-        uiNext.transform.localScale = Vector3.one * 0.48f;
-        if (nextPrefab.name == "I_Tetromino") uiNext.transform.localScale = Vector3.one * 0.377f; // Less scale because this tetromino is wider
+        _uiNext = Instantiate(nextPrefab, _nextContainer.transform);
+        _uiNext.transform.localPosition = Vector3.zero - GetUIPivotOffset(nextPrefab);
+        _uiNext.transform.rotation = Quaternion.Euler(-19.53f, 27.549f, -13.73f);
+        _uiNext.transform.localScale = Vector3.one * 0.48f;
+        if (nextPrefab.name == "I_Tetromino") _uiNext.transform.localScale = Vector3.one * 0.377f; // Less scale because this tetromino is wider
 
-        Destroy(uiNext.GetComponent<Tetromino>());
+        Destroy(_uiNext.GetComponent<Tetromino>());
     }
 
     public void UpdateHoldTetrominoUI(GameObject holdTetromino)

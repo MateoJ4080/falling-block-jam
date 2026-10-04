@@ -5,27 +5,27 @@ using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
     [Header("Main Menu Buttons")]
-    [SerializeField] private Button playButton;
-    [SerializeField] private Button optionsButton;
-    [SerializeField] private Button optionsBackButton;
+    [SerializeField] private Button _playButton;
+    [SerializeField] private Button _optionsButton;
+    [SerializeField] private Button _optionsBackButton;
 
     [Header("Panels")]
-    [SerializeField] private GameObject mainMenuPanel;
-    [SerializeField] private GameObject optionsPanel;
+    [SerializeField] private GameObject _mainMenuPanel;
+    [SerializeField] private GameObject _optionsPanel;
 
     [Header("Audio")]
-    [SerializeField] private Slider musicSlider;
-    [SerializeField] private Slider sfxSlider;
+    [SerializeField] private Slider _musicSlider;
+    [SerializeField] private Slider _sfxSlider;
 
     private void Start()
     {
         if (AudioManager.Instance != null)
         {
-            musicSlider.onValueChanged.RemoveAllListeners();
-            sfxSlider.onValueChanged.RemoveAllListeners();
+            _musicSlider.onValueChanged.RemoveAllListeners();
+            _sfxSlider.onValueChanged.RemoveAllListeners();
 
-            musicSlider.onValueChanged.AddListener(AudioManager.Instance.SetMusicVolume);
-            sfxSlider.onValueChanged.AddListener(AudioManager.Instance.SetSfxVolume);
+            _musicSlider.onValueChanged.AddListener(AudioManager.Instance.SetMusicVolume);
+            _sfxSlider.onValueChanged.AddListener(AudioManager.Instance.SetSfxVolume);
         }
 
         if (AudioManager.Instance.MusicMainMenu != null) AudioManager.Instance.PlayMusic(AudioManager.Instance.MusicMainMenu);
@@ -40,14 +40,14 @@ public class UIManager : MonoBehaviour
 
     public void ShowOptions()
     {
-        mainMenuPanel.SetActive(false);
-        optionsPanel.SetActive(true);
+        _mainMenuPanel.SetActive(false);
+        _optionsPanel.SetActive(true);
     }
 
     public void ShowMainMenu()
     {
-        mainMenuPanel.SetActive(true);
-        optionsPanel.SetActive(false);
+        _mainMenuPanel.SetActive(true);
+        _optionsPanel.SetActive(false);
     }
 
     public void Leave() => Application.Quit();

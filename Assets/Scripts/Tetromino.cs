@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 public class Tetromino : MonoBehaviour
 {
-    private PlayerControls controls;
-    private float lastUpdateTime;
-    private float lastMoveTime;
+    private PlayerControls _controls;
+    private float _lastUpdateTime;
+    private float _lastMoveTime;
     private bool _isLocked;
-    private bool isMoving;
-    private float moveDelay = 0.1f;
+    private bool _isMoving;
+    private readonly float _moveDelay = 0.1f;
 
     private enum BoundCheckResult
     {
@@ -22,24 +22,25 @@ public class Tetromino : MonoBehaviour
 
     private void Awake()
     {
-        controls = new PlayerControls();
+        _controls = new PlayerControls();
 
-        controls.Piece.RotateRight.performed += ctx => Rotate(-90);
-        controls.Piece.RotateLeft.performed += ctx => Rotate(90);
-    }
-    private void Start()
-    {
-        lastUpdateTime = Time.time;
+        _controls.Piece.RotateRight.performed += ctx => Rotate(-90);
+        _controls.Piece.RotateLeft.performed += ctx => Rotate(90);
     }
 
     private void OnEnable()
     {
-        controls.Enable();
+        _controls.Enable();
     }
 
     private void OnDisable()
     {
-        controls.Disable();
+        _controls.Disable();
+    }
+
+    private void Start()
+    {
+        _lastUpdateTime = Time.time;
     }
 
     private void Update()
@@ -52,17 +53,14 @@ public class Tetromino : MonoBehaviour
     {
         if (_isLocked) return;
 
-        if (Time.time >= lastUpdateTime + GameManager.Instance.FallSpeed)
+        if (Time.time >= _lastUpdateTime + GameManager.Instance.FallSpeed)
         {
             if (CanFall())
             {
                 transform.position += Vector3.down * GameManager.Instance.TileSize.y;
-                lastUpdateTime = Time.time;
+                _lastUpdateTime = Time.time;
             }
-            else
-            {
-                LockTetromino();
-            }
+            else LockTetromino();
         }
     }
 
@@ -76,13 +74,13 @@ public class Tetromino : MonoBehaviour
     public void StartMove(Vector2 direction)
     {
         if (_isLocked) return;
-        if (!isMoving)
+        if (!_isMoving)
             StartCoroutine(MoveWhileHeld(direction));
     }
 
     public void StopMove()
     {
-        isMoving = false;
+        _isMoving = false;
     }
 
     public void HandleMove()
@@ -91,27 +89,27 @@ public class Tetromino : MonoBehaviour
 
         if (_isLocked) return;
 
-        Vector2 input = controls.Piece.Move.ReadValue<Vector2>();
+        Vector2 input = _controls.Piece.Move.ReadValue<Vector2>();
         Vector2 direction = Vector2.zero;
 
         if (Mathf.Abs(input.x) > 0) direction.x = Mathf.Sign(input.x);
         if (input.y < 0) direction.y = -1;
 
-        if (direction != Vector2.zero && Time.time >= lastMoveTime + 0.1f)
+        if (direction != Vector2.zero && Time.time >= _lastMoveTime + 0.1f)
         {
             if (CanMoveTo(direction))
             {
                 transform.position += (Vector3)(direction * GameManager.Instance.TileSize);
                 AudioManager.Instance.PlaySFX(AudioManager.Instance.SfxMove);
             }
-            lastMoveTime = Time.time;
+            _lastMoveTime = Time.time;
         }
     }
 
     private IEnumerator MoveWhileHeld(Vector2 direction)
     {
-        isMoving = true;
-        while (isMoving && !_isLocked)
+        _isMoving = true;
+        while (_isMoving && !_isLocked)
         {
             if (CanMoveTo(direction))
             {
@@ -119,7 +117,7 @@ public class Tetromino : MonoBehaviour
                 if (AudioManager.Instance != null)
                     AudioManager.Instance.PlaySFX(AudioManager.Instance.SfxMove);
             }
-            yield return new WaitForSeconds(moveDelay);
+            yield return new WaitForSeconds(_moveDelay);
         }
     }
 
@@ -159,7 +157,7 @@ public class Tetromino : MonoBehaviour
             }
         }
 
-        // Apply rotation and sfx
+        // Apply rotation and SFX
         if (canRotate)
         {
             transform.Rotate(0, 0, angle);
@@ -229,8 +227,7 @@ public class Tetromino : MonoBehaviour
 
     private void LockTetromino()
     {
-        Debug.Log($"LockTetromino by {gameObject.name}");
-        isMoving = false;
+        _isMoving = false;
         _isLocked = true;
 
         List<int> completedHeights = new();

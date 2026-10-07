@@ -4,11 +4,6 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
-    [Header("Main Menu Buttons")]
-    [SerializeField] private Button _playButton;
-    [SerializeField] private Button _optionsButton;
-    [SerializeField] private Button _optionsBackButton;
-
     [Header("Panels")]
     [SerializeField] private GameObject _mainMenuPanel;
     [SerializeField] private GameObject _optionsPanel;
@@ -46,8 +41,8 @@ public class UIManager : MonoBehaviour
 
     public void ShowMainMenu()
     {
-        _mainMenuPanel.SetActive(true);
         _optionsPanel.SetActive(false);
+        _mainMenuPanel.SetActive(true);
     }
 
     public void Leave() => Application.Quit();

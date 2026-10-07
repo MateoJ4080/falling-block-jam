@@ -1268,12 +1268,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1857da3f5e3ffd24e9149af624ca23c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scoreTMP: {fileID: 0}
-  _timeTMP: {fileID: 0}
-  _nextContainer: {fileID: 0}
-  _holdContainer: {fileID: 0}
-  _spawner: {fileID: 0}
-  _mobileControlsPanel: {fileID: 0}
+  _scoreTMP: {fileID: 1392486659}
+  _timeTMP: {fileID: 1255588570}
+  _nextContainer: {fileID: 1630885121}
+  _spawner: {fileID: 1608955762}
+  _mobileControlsPanel: {fileID: 1724213581}
 --- !u!1 &725537601
 GameObject:
   m_ObjectHideFlags: 0
@@ -4864,14 +4863,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d9cd630d5bfb5742a4115d751c18887, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gridSr: {fileID: 0}
-  _holdContainer: {fileID: 0}
-  _spawner: {fileID: 0}
+  _gridSr: {fileID: 1899466950}
+  _holdContainer: {fileID: 45595590}
+  _spawner: {fileID: 1608955762}
   _fallSpeed: 1
-  _moveButtonLeft: {fileID: 0}
-  _moveButtonRight: {fileID: 0}
-  _moveButtonDown1: {fileID: 0}
-  _moveButtonDown2: {fileID: 0}
+  _moveButtonLeft: {fileID: 2013352258}
+  _moveButtonRight: {fileID: 960061877}
+  _moveButtonDown1: {fileID: 561059167}
+  _moveButtonDown2: {fileID: 1413554438}
 --- !u!4 &2145433618
 Transform:
   m_ObjectHideFlags: 0

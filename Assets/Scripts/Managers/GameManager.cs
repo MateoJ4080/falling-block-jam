@@ -231,8 +231,8 @@ public class GameManager : MonoBehaviour
 
             FixBlocksRotation(HoldTetromino);
             GameUIManager.Instance.UpdateHoldTetrominoUI(HoldTetromino);
-
             Destroy(HoldTetromino.GetComponent<Tetromino>());
+
             Destroy(active);
             SpawnNewTetromino();
 

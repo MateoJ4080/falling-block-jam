@@ -241,7 +241,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1061676497}
+      - m_Target: {fileID: 1825361748}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: ShowOptions
         m_Mode: 1
@@ -1595,7 +1595,6 @@ GameObject:
   - component: {fileID: 1061676500}
   - component: {fileID: 1061676499}
   - component: {fileID: 1061676498}
-  - component: {fileID: 1061676497}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1603,25 +1602,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1061676497
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1061676496}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afc200a7c3a0f6c469df9c28aefa3912, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playButton: {fileID: 1228590228}
-  optionsButton: {fileID: 19698779}
-  optionsBackButton: {fileID: 1378546923}
-  mainMenuPanel: {fileID: 1388573207}
-  optionsPanel: {fileID: 1689844662}
-  musicSlider: {fileID: 1009422743}
-  sfxSlider: {fileID: 643359865}
 --- !u!114 &1061676498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1957,7 +1937,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1061676497}
+      - m_Target: {fileID: 1825361748}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: PlayGame
         m_Mode: 1
@@ -2107,7 +2087,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1061676497}
+      - m_Target: {fileID: 1825361748}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: Leave
         m_Mode: 1
@@ -2279,7 +2259,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1061676497}
+      - m_Target: {fileID: 1825361748}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: ShowMainMenu
         m_Mode: 1
@@ -2931,6 +2911,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1819514176}
   m_CullTransparentMesh: 1
+--- !u!1 &1825361747
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1825361749}
+  - component: {fileID: 1825361748}
+  m_Layer: 0
+  m_Name: UIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1825361748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1825361747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afc200a7c3a0f6c469df9c28aefa3912, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mainMenuPanel: {fileID: 1388573207}
+  _optionsPanel: {fileID: 1689844662}
+  _musicSlider: {fileID: 1009422743}
+  _sfxSlider: {fileID: 643359865}
+--- !u!4 &1825361749
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1825361747}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.12782, y: 10.82725, z: 59.83358}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1857686450
 GameObject:
   m_ObjectHideFlags: 0
@@ -3320,3 +3348,4 @@ SceneRoots:
   - {fileID: 1061676501}
   - {fileID: 1857686453}
   - {fileID: 1524133997}
+  - {fileID: 1825361749}

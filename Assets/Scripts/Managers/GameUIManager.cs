@@ -15,7 +15,6 @@ public class GameUIManager : MonoBehaviour
 
     [Header("Containers")]
     [SerializeField] private GameObject _nextContainer;
-    [SerializeField] private GameObject _holdContainer;
 
     [Header("References")]
     [SerializeField] private TetrominoSpawner _spawner;

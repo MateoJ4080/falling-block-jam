@@ -93,10 +93,10 @@ public class GameManager : MonoBehaviour
             ActiveTetromino.GetComponent<Tetromino>().Rotate(angle);
     }
 
-    public Vector3 GetSpawnPosition()
+    public Vector2 GetSpawnPosition()
     {
         Bounds bounds = _gridSr.bounds;
-        return new Vector3(bounds.center.x, bounds.max.y, 0f) - Vector3.up * TileSize.y;
+        return new Vector2(bounds.center.x, bounds.max.y) - Vector2.up * TileSize.y;
     }
 
     public bool IsValidPosition(Vector2Int gridPos)
@@ -192,25 +192,30 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public IEnumerator CheckGameOver(Transform tetromino)
+    public bool CheckGameOver(Transform tetromino, Vector2 spawnPos)
     {
         foreach (Transform block in tetromino)
         {
-            Vector2Int gridSpawnPos = Instance.WorldToGrid(block.position);
+            Vector2 worldPos = spawnPos + Vector2.Scale(block.localPosition, TileSize);
+            Vector2Int gridPos = WorldToGrid(worldPos);
 
-            // Game over sequence
-            if (Instance.GridState.ContainsKey(gridSpawnPos))
-            {
-                Instance.IsGameOver = true;
-
-                AudioManager.Instance.MusicSource.Stop();
-                AudioManager.Instance.PlaySFX(AudioManager.Instance.SfxGameOver);
-
-                yield return new WaitForSeconds(AudioManager.Instance.SfxGameOver.length);
-                SceneManager.LoadScene("Menu");
-                yield break;
-            }
+            if (Instance.GridState.ContainsKey(gridPos))
+                return true;
         }
+
+        return false;
+    }
+
+    public IEnumerator GameOverSequence()
+    {
+        IsGameOver = true;
+
+        AudioManager.Instance.MusicSource.Stop();
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.SfxGameOver);
+
+        yield return new WaitForSeconds(AudioManager.Instance.SfxGameOver.length);
+
+        SceneManager.LoadScene("Menu");
     }
 
     public void SetNextTetromino()

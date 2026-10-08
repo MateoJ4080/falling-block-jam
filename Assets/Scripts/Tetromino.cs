@@ -245,9 +245,14 @@ public class Tetromino : MonoBehaviour
                 if (!completedHeights.Contains(gridPos.y)) completedHeights.Add(gridPos.y);
                 completedHeights.Sort();
             }
+
+            // Make sure it's rendered one less layer than the ActivePiece (small detail for game over)
+            SpriteRenderer sr = block.GetComponent<SpriteRenderer>();
+            if (!GameManager.Instance.IsGameOver) sr.sortingOrder = 9;
         }
 
         if (completedHeights.Count != 0) GameManager.Instance.ClearLines(completedHeights);
+
         GameManager.Instance.SpawnNewTetromino();
     }
 }

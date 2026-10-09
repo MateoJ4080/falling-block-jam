@@ -2232,7 +2232,7 @@ GameObject:
   - component: {fileID: 1140004077}
   - component: {fileID: 1140004078}
   m_Layer: 0
-  m_Name: Big plant (1)
+  m_Name: Stove
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2703,7 +2703,7 @@ GameObject:
   - component: {fileID: 1268248651}
   - component: {fileID: 1268248652}
   m_Layer: 0
-  m_Name: Big plant (3)
+  m_Name: Big plan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3758,7 +3758,7 @@ GameObject:
   - component: {fileID: 1692191094}
   - component: {fileID: 1692191095}
   m_Layer: 0
-  m_Name: Big plant (2)
+  m_Name: Spices
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3773,7 +3773,7 @@ Transform:
   m_GameObject: {fileID: 1692191093}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.042, y: -0.4, z: 66.98}
+  m_LocalPosition: {x: 11.67, y: -0.4, z: 68.13}
   m_LocalScale: {x: 0.47161716, y: 0.47161716, z: 0.47161716}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4753,7 +4753,7 @@ GameObject:
   - component: {fileID: 2091057991}
   - component: {fileID: 2091057992}
   m_Layer: 0
-  m_Name: Big plant
+  m_Name: Utensil Holder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4768,8 +4768,8 @@ Transform:
   m_GameObject: {fileID: 2091057990}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.209, y: -0.06, z: 66.98}
-  m_LocalScale: {x: 0.47161716, y: 0.47161716, z: 0.47161716}
+  m_LocalPosition: {x: 9.62, y: 0.48, z: 68.18}
+  m_LocalScale: {x: 0.8914036, y: 0.8914036, z: 0.8914036}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 381237661}

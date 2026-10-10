@@ -1272,7 +1272,7 @@ MonoBehaviour:
   _timeTMP: {fileID: 1255588570}
   _nextContainer: {fileID: 1630885121}
   _spawner: {fileID: 1608955762}
-  _mobileControlsPanel: {fileID: 1724213581}
+  _mobileControlsPanel: {fileID: 548267985}
 --- !u!1 &725537601
 GameObject:
   m_ObjectHideFlags: 0
